@@ -41,10 +41,60 @@
     "start": "npm run develop",
     "build": "npm run clean && gatsby build",
     "develop": "npm run clean && gatsby develop",
+    "typecheck": "tsc --project tsconfig.json #",
+    "lint:js": "eslint ./*.js",
+    "lint:json": "prettier '*.json'",
+    "lint:ts": "eslint ./src/**/*.ts ./src/**/*.tsx",
+    "lint:style": "stylelint './src/**/*.tsx' --syntax css-in-js",
+    "lint:fix:ts": "yarn lint:ts --fix",
+    "lint:fix:js": "yarn lint:js --fix",
+    "lint:fix:json": "yarn lint:json --write",
+    "lint:fix:style": "yarn lint:style --fix",
+    "lint": "run-p -l -n -c --aggregate-output lint:*",
+    "lint:fix": "run-p -l -n -c --aggregate-output lint:fix:*",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "@types/react": "^16.9.48",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "commitlint": "^9.1.2",
+    "conventional-changelog-conventionalcommits": "^4.4.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
+    "gatsby-plugin-typescript": "^2.4.18",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.0.5",
+    "stylelint": "^13.6.1",
+    "typescript": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "yarn lint:fix:js",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "yarn typecheck",
+      "yarn lint:fix:ts",
+      "yarn lint:style",
+      "git add"
+    ],
+    "*.{json}": [
+      "yarn lint:fix:json",
+      "git add"
+    ]
   }
 }
