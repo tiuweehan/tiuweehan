@@ -1,7 +1,6 @@
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
-import github from "../img/github-icon.svg"
-import logo from "../img/logo.svg"
+import logo from "../img/twh.svg"
 
 const Navbar: React.FC = () => {
     const [active, setActive] = useState<boolean>(false)
@@ -26,7 +25,13 @@ const Navbar: React.FC = () => {
             <div className="container">
                 <div className="navbar-brand">
                     <Link to="/" className="navbar-item" title="Logo">
-                        <img src={logo} alt="Kaldi" style={{ width: "88px" }} />
+                        <img
+                            src={logo}
+                            alt="Kaldi"
+                            style={{ width: "25px", height: "30px" }}
+                        />
+                        <div style={{ width: "10px" }} />
+                        <h1>Tiu Wee Han</h1>
                     </Link>
                     {/* Hamburger menu */}
                     <div
@@ -43,7 +48,7 @@ const Navbar: React.FC = () => {
                     id="navMenu"
                     className={`navbar-menu ${navBarActiveClass}`}
                 >
-                    <div className="navbar-start has-text-centered">
+                    <div className="navbar-end has-text-centered">
                         <Link className="navbar-item" to="/about">
                             About
                         </Link>
@@ -59,18 +64,6 @@ const Navbar: React.FC = () => {
                         <Link className="navbar-item" to="/contact/examples">
                             Form Examples
                         </Link>
-                    </div>
-                    <div className="navbar-end has-text-centered">
-                        <a
-                            className="navbar-item"
-                            href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <span className="icon">
-                                <img src={github} alt="Github" />
-                            </span>
-                        </a>
                     </div>
                 </div>
             </div>
