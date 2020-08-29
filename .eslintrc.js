@@ -4,51 +4,54 @@ module.exports = {
         ecmaVersion: 9,
         project: "./tsconfig.json",
         sourceType: "module",
-        createDefaultProgram: true
+        createDefaultProgram: true,
     },
     env: {
         es6: true,
         browser: true,
-        node: true
+        node: true,
     },
     extends: [
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:prettier/recommended",
-        "prettier/@typescript-eslint"
+        "prettier/@typescript-eslint",
     ],
-    plugins: ["@typescript-eslint", "react-hooks","sort-imports-es6-autofix"],
+    plugins: ["@typescript-eslint", "react-hooks", "sort-imports-es6-autofix"],
     rules: {
-        "sort-imports-es6-autofix/sort-imports-es6": [2, { // 通常のsort-importsではautofixが効かないパターンが多いため
-            "ignoreCase": false,
-            "ignoreMemberSort": false,
-            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-        }],
+        "sort-imports-es6-autofix/sort-imports-es6": [
+            2,
+            {
+                // 通常のsort-importsではautofixが効かないパターンが多いため
+                ignoreCase: false,
+                ignoreMemberSort: false,
+                memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+            },
+        ],
         "@typescript-eslint/ban-types": [
             "error",
             {
-                "types": {
+                types: {
                     "React.FunctionComponent": {
-                        "message": "Use React.FC instead",
-                        "fixWith": "React.FC"
+                        message: "Use React.FC instead",
+                        fixWith: "React.FC",
                     },
-                    "Array": null,
-                    "Object": "Use {} instead",
-                    "String": {
-                        "message": "Use string instead",
-                        "fixWith": "string"
-                    }
-                }
-            }
-        ]
+                    Object: "Use {} instead",
+                    String: {
+                        message: "Use string instead",
+                        fixWith: "string",
+                    },
+                },
+            },
+        ],
     },
     settings: {
         react: {
-            version: "detect"
+            version: "detect",
         },
         node: {
-            tryExtensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".node"]
-        }
+            tryExtensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".node"],
+        },
     },
     overrides: [
         {
@@ -59,7 +62,6 @@ module.exports = {
                 "react/react-in-jsx-scope": 0,
                 "prefer-object-spread": "error",
 
-                "@typescript-eslint/interface-name-prefix": [2, "never"],
                 "no-console": 0,
 
                 "no-case-declarations": 2,
@@ -75,7 +77,10 @@ module.exports = {
                 "@typescript-eslint/no-array-constructor": 2,
 
                 "@typescript-eslint/adjacent-overload-signatures": 2,
-                "@typescript-eslint/no-namespace": [2, { allowDeclarations: true }],
+                "@typescript-eslint/no-namespace": [
+                    2,
+                    { allowDeclarations: true },
+                ],
                 "@typescript-eslint/prefer-namespace-keyword": 2,
 
                 "@typescript-eslint/no-require-imports": 2,
@@ -94,17 +99,17 @@ module.exports = {
 
                 // react typescript
                 "@typescript-eslint/explicit-function-return-type": "off",
-                "react/prop-types": "off"
-            }
+                "react/prop-types": "off",
+            },
         },
         {
             files: ["**/__tests__/**", "**/*.test.tsx", "**/*.test.ts"],
             env: {
-                jest: true
+                jest: true,
             },
             rules: {
-                "no-invalid-this": 0
-            }
-        }
-    ]
+                "no-invalid-this": 0,
+            },
+        },
+    ],
 }

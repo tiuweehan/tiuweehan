@@ -38,9 +38,9 @@
   "main": "n/a",
   "scripts": {
     "clean": "gatsby clean",
-    "start": "npm run develop",
-    "build": "npm run clean && gatsby build",
-    "develop": "npm run clean && gatsby develop",
+    "start": "yarn run develop",
+    "build": "yarn run clean && gatsby build",
+    "develop": "yarn run clean && gatsby develop",
     "typecheck": "tsc --project tsconfig.json #",
     "lint:js": "eslint ./*.js",
     "lint:json": "prettier '*.json'",
@@ -58,6 +58,8 @@
   "devDependencies": {
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^6.1.0",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "commitlint": "^9.1.2",
@@ -73,6 +75,7 @@
     "lint-staged": "^10.2.13",
     "prettier": "^2.0.5",
     "stylelint": "^13.6.1",
+    "stylelint-config-recommended": "^3.0.0",
     "typescript": "^4.0.2"
   },
   "husky": {
