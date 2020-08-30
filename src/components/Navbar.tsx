@@ -53,9 +53,6 @@ const Navbar: React.FC = () => {
                 >
                     <div className="navbar-end has-text-centered">
                         <Link className="navbar-item" to="/">
-                            Home
-                        </Link>
-                        <Link className="navbar-item" to="/about">
                             About
                         </Link>
                         <Link className="navbar-item" to="/products">

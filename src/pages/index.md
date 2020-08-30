@@ -5,8 +5,10 @@ image: /img/home-jumbotron.jpg
 heading: Hello World!
 subheading: Support sustainable farming while enjoying a cup
 connections:
-  - icon: facebook-square
-    link: https://www.facebook.com/Weegieee/
+  github: https://github.com/tiuweehan
+  email: contact@tiuweehan.com
+  linkedin: https://www.linkedin.com/in/wee-han/
+  facebook: https://www.facebook.com/Weegieee/
 mainpitch:
   title: Hello World!
   description: >
