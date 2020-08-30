@@ -52,6 +52,7 @@ export const IndexPageTemplate = ({
                     justifyContent: "space-around",
                     alignItems: "center",
                     flexDirection: "column",
+                    zIndex: 1, // Place div over stars
                 }}
             >
                 <h1

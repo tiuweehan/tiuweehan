@@ -52,6 +52,9 @@ const Navbar: React.FC = () => {
                     className={`navbar-menu ${navBarActiveClass}`}
                 >
                     <div className="navbar-end has-text-centered">
+                        <Link className="navbar-item" to="/">
+                            Home
+                        </Link>
                         <Link className="navbar-item" to="/about">
                             About
                         </Link>
