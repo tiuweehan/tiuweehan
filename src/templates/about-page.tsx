@@ -1,4 +1,3 @@
-import { MarkdownRemark } from "types/graphql-types"
 import { graphql } from "gatsby"
 import Content, { HTMLContent } from "../components/Content"
 import Layout from "../components/Layout"
@@ -40,7 +39,7 @@ export const AboutPageTemplate: React.FC<AboutPageTemplateProps> = ({
 
 interface AboutPageProps {
     data: {
-        markdownRemark: MarkdownRemark
+        markdownRemark: any
     }
 }
 

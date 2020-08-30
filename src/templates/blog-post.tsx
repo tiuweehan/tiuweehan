@@ -1,4 +1,3 @@
-import { BlogPostByIdQuery } from "types/graphql-types"
 import { Link, graphql } from "gatsby"
 import { kebabCase } from "lodash"
 import Content, { HTMLContent } from "../components/Content"
@@ -65,7 +64,7 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
 }
 
 const BlogPost: React.FC<{
-    data: BlogPostByIdQuery
+    data: any
 }> = ({ data }) => {
     const { markdownRemark: post } = data
 
