@@ -2,18 +2,16 @@ import { IndexPageTemplate } from "../../templates/index-page"
 import PropTypes from "prop-types"
 import React from "react"
 
-const IndexPagePreview: React.FC<any> = ({ entry, getAsset }) => {
+const IndexPagePreview: React.FC<any> = ({ entry, widgetFor }) => {
     const data = entry.getIn(["data"]).toJS()
 
     if (data) {
         return (
             <IndexPageTemplate
-                image={data.image}
                 title={data.title}
-                heading={data.heading}
                 connections={data.connections || {}}
-                description={data.description}
-                intro={data.intro || { blurbs: [] }}
+                heading={data.heading}
+                content={widgetFor("body")}
             />
         )
     } else {
@@ -25,7 +23,7 @@ IndexPagePreview.propTypes = {
     entry: PropTypes.shape({
         getIn: PropTypes.func,
     }),
-    getAsset: PropTypes.func,
+    widgetFor: PropTypes.func,
 }
 
 export default IndexPagePreview
