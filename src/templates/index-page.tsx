@@ -1,3 +1,4 @@
+import "./index-page.css"
 import { Link, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
@@ -21,16 +22,18 @@ export const IndexPageTemplate = ({
     intro,
 }: IndexPageTemplateProps) => (
     <div>
+        <div style={{ position: "fixed", width: "100%", height: "98vh" }}>
+            <div id="stars" />
+            <div id="stars2" />
+            <div id="stars3" />
+        </div>
         <div
             className="full-width-image margin-top-0"
             style={{
-                backgroundImage: `url(${
-                    image.childImageSharp
-                        ? image.childImageSharp.fluid.src
-                        : image
-                })`,
+                background: `radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)`,
                 backgroundPosition: `top left`,
                 backgroundAttachment: `fixed`,
+                height: "98vh",
             }}
         >
             <div
