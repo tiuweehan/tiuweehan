@@ -4,6 +4,9 @@ title: Tiu Wee Han
 image: /img/home-jumbotron.jpg
 heading: Hello World!
 subheading: Support sustainable farming while enjoying a cup
+connections:
+  - icon: facebook-square
+    link: https://www.facebook.com/Weegieee/
 mainpitch:
   title: Hello World!
   description: >

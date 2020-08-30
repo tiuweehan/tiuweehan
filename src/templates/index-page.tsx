@@ -1,6 +1,5 @@
 import "./index-page.css"
 import { Link, graphql } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 
 import BlogRoll from "../components/BlogRoll"
@@ -12,6 +11,7 @@ interface IndexPageTemplateProps {
     title?: string
     heading?: string
     subheading?: string
+    connections?: any[]
     mainpitch?: any
     description?: string
     intro?: {
@@ -24,6 +24,7 @@ export const IndexPageTemplate = ({
     title,
     heading,
     subheading,
+    connections,
     mainpitch,
     description,
     intro,
@@ -90,6 +91,9 @@ export const IndexPageTemplate = ({
                 >
                     {subheading}
                 </h3>
+                {connections?.map((connection: any, index: number) => (
+                    <p key={index}>{connection.link}</p>
+                ))}
             </div>
         </div>
         <section className="section section--gradient">
@@ -134,18 +138,6 @@ export const IndexPageTemplate = ({
     </div>
 )
 
-IndexPageTemplate.propTypes = {
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    title: PropTypes.string,
-    heading: PropTypes.string,
-    subheading: PropTypes.string,
-    mainpitch: PropTypes.object,
-    description: PropTypes.string,
-    intro: PropTypes.shape({
-        blurbs: PropTypes.array,
-    }),
-}
-
 interface IndexPageProps {
     data: {
         markdownRemark: {
@@ -163,6 +155,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                 title={post.frontmatter.title}
                 heading={post.frontmatter.heading}
                 subheading={post.frontmatter.subheading}
+                connections={post.frontmatter.connections}
                 mainpitch={post.frontmatter.mainpitch}
                 description={post.frontmatter.description}
                 intro={post.frontmatter.intro}
@@ -187,6 +180,10 @@ export const pageQuery = graphql`
                 }
                 heading
                 subheading
+                connections {
+                    icon
+                    link
+                }
                 mainpitch {
                     title
                     description

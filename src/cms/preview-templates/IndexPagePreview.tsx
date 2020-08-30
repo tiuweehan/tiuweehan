@@ -12,6 +12,7 @@ const IndexPagePreview: React.FC<any> = ({ entry, getAsset }) => {
                 title={data.title}
                 heading={data.heading}
                 subheading={data.subheading}
+                connections={data.connections}
                 description={data.description}
                 intro={data.intro || { blurbs: [] }}
                 mainpitch={data.mainpitch || {}}
@@ -24,9 +25,9 @@ const IndexPagePreview: React.FC<any> = ({ entry, getAsset }) => {
 
 IndexPagePreview.propTypes = {
     entry: PropTypes.shape({
-        getIn: PropTypes.func
+        getIn: PropTypes.func,
     }),
-    getAsset: PropTypes.func
+    getAsset: PropTypes.func,
 }
 
 export default IndexPagePreview
