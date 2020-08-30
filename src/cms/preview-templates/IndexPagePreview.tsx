@@ -11,11 +11,9 @@ const IndexPagePreview: React.FC<any> = ({ entry, getAsset }) => {
                 image={data.image}
                 title={data.title}
                 heading={data.heading}
-                subheading={data.subheading}
-                connections={data.connections}
+                connections={data.connections || {}}
                 description={data.description}
                 intro={data.intro || { blurbs: [] }}
-                mainpitch={data.mainpitch || {}}
             />
         )
     } else {

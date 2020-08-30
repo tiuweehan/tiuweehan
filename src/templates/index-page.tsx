@@ -3,9 +3,9 @@ import { Link, graphql } from "gatsby"
 import React from "react"
 
 import BlogRoll from "../components/BlogRoll"
-import Features from "../components/Features"
 import Layout from "../components/Layout"
 
+import ReactMarkdown from "react-markdown"
 import email from "../img/social/email.svg"
 import facebook from "../img/social/facebook.svg"
 import github from "../img/social/github.svg"
@@ -15,14 +15,12 @@ interface IndexPageTemplateProps {
     image?: any | string
     title?: string
     heading?: string
-    subheading?: string
     connections?: {
         github: string
         linkedin: string
         email: string
         facebook: string
     }
-    mainpitch?: any
     description?: string
     intro?: {
         blurbs: any[]
@@ -33,9 +31,7 @@ export const IndexPageTemplate = ({
     image,
     title,
     heading,
-    subheading,
     connections,
-    mainpitch,
     description,
     intro,
 }: IndexPageTemplateProps) => (
@@ -152,23 +148,28 @@ export const IndexPageTemplate = ({
                         <div className="column is-10 is-offset-1">
                             <div className="content">
                                 <div className="columns">
-                                    <div className="column is-12">
+                                    <div className="column is-12 has-text-centered">
                                         <h3 className="has-text-weight-semibold is-size-2">
                                             {heading}
                                         </h3>
-                                        <p>{description}</p>
+                                        <div>
+                                            <ReactMarkdown
+                                                source={description}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                                <Features gridItems={intro?.blurbs} />
-                                <div className="columns">
-                                    <div className="column is-12 has-text-centered">
-                                        <Link className="btn" to="/products">
-                                            See all products
-                                        </Link>
-                                    </div>
-                                </div>
+                                {/*<Features gridItems={intro?.blurbs} />*/}
+                                {/*<div className="columns">*/}
+                                {/*    <div className="column is-12 has-text-centered">*/}
+                                {/*        <Link className="btn" to="/products">*/}
+                                {/*            See all products*/}
+                                {/*        </Link>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+                                <br />
                                 <div className="column is-12">
-                                    <h3 className="has-text-weight-semibold is-size-2">
+                                    <h3 className="has-text-weight-semibold is-size-2 has-text-centered">
                                         Latest stories
                                     </h3>
                                     <BlogRoll />
@@ -203,9 +204,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                 image={post.frontmatter.image}
                 title={post.frontmatter.title}
                 heading={post.frontmatter.heading}
-                subheading={post.frontmatter.subheading}
                 connections={post.frontmatter.connections}
-                mainpitch={post.frontmatter.mainpitch}
                 description={post.frontmatter.description}
                 intro={post.frontmatter.intro}
             />
@@ -228,16 +227,11 @@ export const pageQuery = graphql`
                     }
                 }
                 heading
-                subheading
                 connections {
                     github
                     linkedin
                     email
                     facebook
-                }
-                mainpitch {
-                    title
-                    description
                 }
                 description
                 intro {

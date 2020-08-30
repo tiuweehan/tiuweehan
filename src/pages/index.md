@@ -3,19 +3,19 @@ templateKey: index-page
 title: Tiu Wee Han
 image: /img/home-jumbotron.jpg
 heading: Hello World!
-subheading: Support sustainable farming while enjoying a cup
 connections:
   github: https://github.com/tiuweehan
   email: contact@tiuweehan.com
   linkedin: https://www.linkedin.com/in/wee-han/
   facebook: https://www.facebook.com/Weegieee/
-mainpitch:
-  title: Hello World!
-  description: >
-    M
-description: >-
-  My name is Wee Han and I am an undergraduate student at the.
+description: >-  
+  My name is Wee Han and I am an undergraduate student at the [National University of Singapore](http://www.nus.edu.sg/).
+  
+  
   I started programming in August 2018 and have not looked back since.
+  
+  
+  Find my resume here.
 intro:
   blurbs:
     - image: /img/coffee.png
