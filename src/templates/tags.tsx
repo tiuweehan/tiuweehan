@@ -1,17 +1,39 @@
 import { Link, graphql } from "gatsby"
-import { TagPageQuery } from "types/graphql-types"
 import Helmet from "react-helmet"
 import Layout from "../components/Layout"
 import React from "react"
 
-const TagRoute = (props: {
-    data: RecursiveNonNullable<TagPageQuery>
-    pageContext: { tag: string }
-}) => {
+interface TagRouteProps {
+    data: {
+        site: {
+            siteMetadata: {
+                title: string
+            }
+        }
+        allMarkdownRemark: {
+            totalCount: number
+            edges: Array<{
+                node: {
+                    fields: {
+                        slug: string
+                    }
+                    frontmatter: {
+                        title: string
+                    }
+                }
+            }>
+        }
+    }
+    pageContext: {
+        tag: string
+    }
+}
+
+const TagRoute: React.FC<TagRouteProps> = (props) => {
     const posts = props.data.allMarkdownRemark.edges
     const postLinks = posts.map((post) => (
         <li key={post.node.fields.slug}>
-            <Link to={post.node.fields.slug!}>
+            <Link to={post.node.fields.slug}>
                 <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
             </Link>
         </li>

@@ -1,7 +1,7 @@
 import React from "react"
 
 interface PropType {
-    data: Array<{
+    data?: Array<{
         plan?: string
         price?: string | number
         description?: string
@@ -11,7 +11,7 @@ interface PropType {
 
 const Pricing: React.FC<PropType> = ({ data }) => (
     <div className="columns">
-        {data.map((price) => (
+        {data?.map((price) => (
             <div key={price.plan} className="column">
                 <section className="section">
                     <h4 className="has-text-centered has-text-weight-semibold">

@@ -3,14 +3,21 @@ import { Link, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-import { IndexPageTemplateQuery } from "types/graphql-types"
 import BlogRoll from "../components/BlogRoll"
 import Features from "../components/Features"
 import Layout from "../components/Layout"
 
-type IndexPageTemplateProps = RecursiveNonNullable<
-    IndexPageTemplateQuery
->["markdownRemark"]["frontmatter"]
+interface IndexPageTemplateProps {
+    image?: any | string
+    title?: string
+    heading?: string
+    subheading?: string
+    mainpitch?: any
+    description?: string
+    intro?: {
+        blurbs: any[]
+    }
+}
 
 export const IndexPageTemplate = ({
     image,
@@ -30,41 +37,51 @@ export const IndexPageTemplate = ({
         <div
             className="full-width-image margin-top-0"
             style={{
-                background: `radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)`,
+                background: `radial-gradient(ellipse at bottom, #1b2735 0%, #000000 100%)`,
                 backgroundPosition: `top left`,
                 backgroundAttachment: `fixed`,
-                height: "98vh",
+                height: "97vh",
             }}
         >
             <div
                 style={{
+                    marginTop: "-10%",
                     display: "flex",
                     height: "150px",
                     lineHeight: "1",
                     justifyContent: "space-around",
-                    alignItems: "left",
+                    alignItems: "center",
                     flexDirection: "column",
                 }}
             >
                 <h1
                     className="has-text-weight-bold is-size-3-mobile is-size-2-tablet is-size-1-widescreen"
                     style={{
-                        boxShadow:
-                            "rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px",
-                        backgroundColor: "rgb(255, 68, 0)",
+                        backgroundColor: "transparent",
                         color: "white",
                         lineHeight: "1",
                         padding: "0.25em",
                     }}
                 >
-                    {title}
+                    <span
+                        style={{
+                            background:
+                                "-webkit-linear-gradient(white, #38495a)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            fontFamily: "lato, sans-serif",
+                            fontWeight: 500,
+                            fontSize: "50px",
+                            letterSpacing: "1px",
+                        }}
+                    >
+                        {title}
+                    </span>
                 </h1>
                 <h3
                     className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen"
                     style={{
-                        boxShadow:
-                            "rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px",
-                        backgroundColor: "rgb(255, 68, 0)",
+                        backgroundColor: "transparent",
                         color: "white",
                         lineHeight: "1",
                         padding: "0.25em",
@@ -80,18 +97,6 @@ export const IndexPageTemplate = ({
                     <div className="columns">
                         <div className="column is-10 is-offset-1">
                             <div className="content">
-                                <div className="content">
-                                    <div className="tile">
-                                        <h1 className="title">
-                                            {mainpitch.title}
-                                        </h1>
-                                    </div>
-                                    <div className="tile">
-                                        <h3 className="subtitle">
-                                            {mainpitch.description}
-                                        </h3>
-                                    </div>
-                                </div>
                                 <div className="columns">
                                     <div className="column is-12">
                                         <h3 className="has-text-weight-semibold is-size-2">
@@ -100,7 +105,7 @@ export const IndexPageTemplate = ({
                                         <p>{description}</p>
                                     </div>
                                 </div>
-                                <Features gridItems={intro.blurbs} />
+                                <Features gridItems={intro?.blurbs} />
                                 <div className="columns">
                                     <div className="column is-12 has-text-centered">
                                         <Link className="btn" to="/products">
@@ -140,22 +145,26 @@ IndexPageTemplate.propTypes = {
     }),
 }
 
-const IndexPage = ({
-    data,
-}: {
-    data: RecursiveNonNullable<IndexPageTemplateQuery>
-}) => {
+interface IndexPageProps {
+    data: {
+        markdownRemark: {
+            frontmatter: IndexPageTemplateProps
+        }
+    }
+}
+
+const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     const { markdownRemark: post } = data
     return (
         <Layout>
             <IndexPageTemplate
-                image={post?.frontmatter?.image}
-                title={post?.frontmatter?.title}
-                heading={post?.frontmatter?.heading}
-                subheading={post?.frontmatter?.subheading}
-                mainpitch={post?.frontmatter?.mainpitch}
-                description={post?.frontmatter?.description}
-                intro={post?.frontmatter?.intro}
+                image={post.frontmatter.image}
+                title={post.frontmatter.title}
+                heading={post.frontmatter.heading}
+                subheading={post.frontmatter.subheading}
+                mainpitch={post.frontmatter.mainpitch}
+                description={post.frontmatter.description}
+                intro={post.frontmatter.intro}
             />
         </Layout>
     )

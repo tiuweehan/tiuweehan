@@ -18,9 +18,12 @@ const Navbar: React.FC = () => {
 
     return (
         <nav
-            className="navbar is-transparent"
+            className="navbar"
             role="navigation"
             aria-label="main-navigation"
+            style={{
+                background: "#040508",
+            }}
         >
             <div className="container">
                 <div className="navbar-brand">

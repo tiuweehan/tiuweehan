@@ -2,7 +2,7 @@ import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
 import React from "react"
 
 interface PropType {
-    gridItems: Array<{
+    gridItems?: Array<{
         image: any | string
         text?: string
     }>
@@ -10,7 +10,7 @@ interface PropType {
 
 const FeatureGrid = ({ gridItems }: PropType) => (
     <div className="columns is-multiline">
-        {gridItems.map((item) => (
+        {gridItems?.map((item) => (
             <div key={item.text} className="column is-6">
                 <section className="section">
                     <div className="has-text-centered">

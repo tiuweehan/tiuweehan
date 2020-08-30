@@ -1,4 +1,3 @@
-import { ProductPageQuery } from "types/graphql-types"
 import { graphql } from "gatsby"
 import Features from "../components/Features"
 import Layout from "../components/Layout"
@@ -7,7 +6,34 @@ import Pricing from "../components/Pricing"
 import React from "react"
 import Testimonials from "../components/Testimonials"
 
-export const ProductPageTemplate = ({
+type ProductPageTemplateProps = Partial<{
+    image: any | string
+    title: string
+    heading: string
+    description: string
+    intro: Partial<{
+        blurbs?: any[]
+    }>
+    main: {
+        heading: string
+        description: string
+        image1: any | string
+        image2: any | string
+        image3: any | string
+    }
+    testimonials: Array<{
+        quote?: string
+        author?: string
+    }>
+    full_image: any
+    pricing: {
+        heading: string
+        description: string
+        plans: any[]
+    }
+}>
+
+export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
     image,
     title,
     heading,
@@ -17,7 +43,7 @@ export const ProductPageTemplate = ({
     testimonials,
     full_image,
     pricing,
-}: RecursiveNonNullable<ProductPageQuery>["markdownRemark"]["frontmatter"]) => (
+}) => (
     <div className="content">
         <div
             className="full-width-image-container margin-top-0"
@@ -54,13 +80,13 @@ export const ProductPageTemplate = ({
                     </div>
                     <div className="columns">
                         <div className="column is-10 is-offset-1">
-                            <Features gridItems={intro.blurbs} />
+                            <Features gridItems={intro?.blurbs} />
                             <div className="columns">
                                 <div className="column is-7">
                                     <h3 className="has-text-weight-semibold is-size-3">
-                                        {main.heading}
+                                        {main?.heading}
                                     </h3>
-                                    <p>{main.description}</p>
+                                    <p>{main?.description}</p>
                                 </div>
                             </div>
                             <div className="tile is-ancestor">
@@ -69,14 +95,14 @@ export const ProductPageTemplate = ({
                                         <div className="tile is-parent is-vertical">
                                             <article className="tile is-child">
                                                 <PreviewCompatibleImage
-                                                    imageInfo={main.image1}
+                                                    imageInfo={main?.image1}
                                                 />
                                             </article>
                                         </div>
                                         <div className="tile is-parent">
                                             <article className="tile is-child">
                                                 <PreviewCompatibleImage
-                                                    imageInfo={main.image2}
+                                                    imageInfo={main?.image2}
                                                 />
                                             </article>
                                         </div>
@@ -84,7 +110,7 @@ export const ProductPageTemplate = ({
                                     <div className="tile is-parent">
                                         <article className="tile is-child">
                                             <PreviewCompatibleImage
-                                                imageInfo={main.image3}
+                                                imageInfo={main?.image3}
                                             />
                                         </article>
                                     </div>
@@ -95,18 +121,18 @@ export const ProductPageTemplate = ({
                                 className="full-width-image-container"
                                 style={{
                                     backgroundImage: `url(${
-                                        full_image.childImageSharp
-                                            ? full_image.childImageSharp.fluid
+                                        full_image?.childImageSharp
+                                            ? full_image?.childImageSharp.fluid
                                                   .src
                                             : full_image
                                     })`,
                                 }}
                             />
                             <h2 className="has-text-weight-semibold is-size-2">
-                                {pricing.heading}
+                                {pricing?.heading}
                             </h2>
-                            <p className="is-size-5">{pricing.description}</p>
-                            <Pricing data={pricing.plans} />
+                            <p className="is-size-5">{pricing?.description}</p>
+                            <Pricing data={pricing?.plans} />
                         </div>
                     </div>
                 </div>
@@ -115,11 +141,15 @@ export const ProductPageTemplate = ({
     </div>
 )
 
-const ProductPage = ({
-    data,
-}: {
-    data: RecursiveNonNullable<ProductPageQuery>
-}) => {
+interface ProductPageProps {
+    data: {
+        markdownRemark: {
+            frontmatter: ProductPageTemplateProps
+        }
+    }
+}
+
+const ProductPage: React.FC<ProductPageProps> = ({ data }) => {
     const { frontmatter } = data.markdownRemark
 
     return (

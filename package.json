@@ -86,18 +86,15 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "yarn lint:fix:js",
-      "git add"
+      "yarn lint:fix:js"
     ],
     "*.{ts,tsx}": [
       "yarn typecheck",
       "yarn lint:fix:ts",
-      "yarn lint:style",
-      "git add"
+      "yarn lint:style"
     ],
     "*.{json}": [
-      "yarn lint:fix:json",
-      "git add"
+      "yarn lint:fix:json"
     ]
   }
 }
