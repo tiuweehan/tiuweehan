@@ -6,7 +6,7 @@ import Pricing from "../components/Pricing"
 import React from "react"
 import Testimonials from "../components/Testimonials"
 
-type ProductPageTemplateProps = Partial<{
+type ExperiencePageTemplateProps = Partial<{
     image: any | string
     title: string
     heading: string
@@ -33,7 +33,7 @@ type ProductPageTemplateProps = Partial<{
     }
 }>
 
-export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
+export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
     image,
     title,
     heading,
@@ -144,17 +144,17 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
 interface ProductPageProps {
     data: {
         markdownRemark: {
-            frontmatter: ProductPageTemplateProps
+            frontmatter: ExperiencePageTemplateProps
         }
     }
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({ data }) => {
+const ExperiencePage: React.FC<ProductPageProps> = ({ data }) => {
     const { frontmatter } = data.markdownRemark
 
     return (
         <Layout>
-            <ProductPageTemplate
+            <ExperiencePageTemplate
                 image={frontmatter.image}
                 title={frontmatter.title}
                 heading={frontmatter.heading}
@@ -169,10 +169,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ data }) => {
     )
 }
 
-export default ProductPage
+export default ExperiencePage
 
-export const productPageQuery = graphql`
-    query ProductPage($id: String!) {
+export const experiencePageQuery = graphql`
+    query ExperiencePage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
                 title

@@ -37,9 +37,9 @@ const Footer: React.FC = () => {
                                     <li>
                                         <Link
                                             className="navbar-item"
-                                            to="/products"
+                                            to="/experience"
                                         >
-                                            Products
+                                            Experience
                                         </Link>
                                     </li>
                                     <li>
