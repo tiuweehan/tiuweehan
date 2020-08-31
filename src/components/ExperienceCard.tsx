@@ -1,4 +1,5 @@
 import "./ExperienceCard.css"
+import { MarkdownContent } from "./Content"
 import React, { useLayoutEffect, useRef, useState } from "react"
 
 const ExperienceCard: React.FC = () => {
@@ -37,11 +38,13 @@ const ExperienceCard: React.FC = () => {
                     </header>
 
                     <div className="profile-bio">
-                        <p>
-                            It takes monumental improvement for us to change how
-                            we live our lives. Design is the way we access that
-                            improvement.
-                        </p>
+                        <MarkdownContent
+                            content={
+                                "**It** takes monumental improvement for us to change how \
+                        we live our lives. Design is the way we access that \
+                        improvement."
+                            }
+                        />
                     </div>
 
                     <ul className="profile-social-links">
