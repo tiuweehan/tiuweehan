@@ -1,11 +1,7 @@
 import { graphql } from "gatsby"
-import ExperienceCard from "../components/ExperienceCard"
-import Features from "../components/Features"
 import Layout from "../components/Layout"
-import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
 import Pricing from "../components/Pricing"
 import React from "react"
-import Testimonials from "../components/Testimonials"
 
 type ExperiencePageTemplateProps = Partial<{
     image: any | string
@@ -72,63 +68,7 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
             <div className="container">
                 <div className="section">
                     <div className="columns">
-                        <div className="column is-7 is-offset-1">
-                            <h3 className="has-text-weight-semibold is-size-2">
-                                {heading}
-                            </h3>
-                            <p>{description}</p>
-                        </div>
-                    </div>
-                    <div className="columns">
                         <div className="column is-10 is-offset-1">
-                            <Features gridItems={intro?.blurbs} />
-                            <div className="columns">
-                                <div className="column is-7">
-                                    <h3 className="has-text-weight-semibold is-size-3">
-                                        {main?.heading}
-                                    </h3>
-                                    <p>{main?.description}</p>
-                                </div>
-                            </div>
-                            <div className="tile is-ancestor">
-                                <div className="tile is-vertical">
-                                    <div className="tile">
-                                        <div className="tile is-parent is-vertical">
-                                            <article className="tile is-child">
-                                                <PreviewCompatibleImage
-                                                    imageInfo={main?.image1}
-                                                />
-                                            </article>
-                                        </div>
-                                        <div className="tile is-parent">
-                                            <article className="tile is-child">
-                                                <PreviewCompatibleImage
-                                                    imageInfo={main?.image2}
-                                                />
-                                            </article>
-                                        </div>
-                                    </div>
-                                    <div className="tile is-parent">
-                                        <article className="tile is-child">
-                                            <PreviewCompatibleImage
-                                                imageInfo={main?.image3}
-                                            />
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
-                            <Testimonials testimonials={testimonials} />
-                            <div
-                                className="full-width-image-container"
-                                style={{
-                                    backgroundImage: `url(${
-                                        full_image?.childImageSharp
-                                            ? full_image?.childImageSharp.fluid
-                                                  .src
-                                            : full_image
-                                    })`,
-                                }}
-                            />
                             <h2 className="has-text-weight-semibold is-size-2">
                                 {pricing?.heading}
                             </h2>
@@ -139,7 +79,6 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
                 </div>
             </div>
         </section>
-        <ExperienceCard />
     </div>
 )
 

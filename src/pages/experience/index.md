@@ -1,7 +1,7 @@
 ---
 templateKey: 'experience-page'
 path: /experience
-title: Our Coffee
+title: Experience
 image: /img/jumbotron.jpg
 heading: Great coffee with a conscience
 description: >-
@@ -71,11 +71,8 @@ testimonials:
       stance on empowering farmers and transparency.
 full_image: /img/products-full-width.jpg
 pricing:
-  heading: Monthly subscriptions
+  heading: Work experience
   description: >-
-    We make it easy to make great coffee a part of your life. Choose one of our
-    monthly subscription plans to receive great coffee at your doorstep each
-    month. Contact us about more details and payment info.
   plans:
     - description: Perfect for the drinker who likes to enjoy 1-2 cups per day.
       items:
@@ -91,6 +88,20 @@ pricing:
         - Up to 4 different varieties of beans
       plan: Big
       price: '80'
+    - description: Want a few tiny batches from different varieties? Try our custom plan
+      items:
+        - Whatever you need
+        - Green or roasted beans
+        - Unlimited varieties
+      plan: Custom
+      price: '??'
+    - description: Want a few tiny batches from different varieties? Try our custom plan
+      items:
+        - Whatever you need
+        - Green or roasted beans
+        - Unlimited varieties
+      plan: Custom
+      price: '??'
     - description: Want a few tiny batches from different varieties? Try our custom plan
       items:
         - Whatever you need
