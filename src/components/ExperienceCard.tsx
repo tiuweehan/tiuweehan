@@ -6,7 +6,9 @@ interface ExperienceCardProps {
     image: any | string
     heading: string
     subheading: string
-    contents: string[]
+    contents: Array<{
+        content: string
+    }>
 }
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({
@@ -39,7 +41,11 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                     <header>
                         <a target="_blank" rel="noreferrer" href="#">
                             <img
-                                src={image.childImageSharp.fluid.src}
+                                src={
+                                    image.childImageSharp
+                                        ? image.childImageSharp.fluid.src
+                                        : image
+                                }
                                 className="hoverZoomLink"
                             />
                         </a>

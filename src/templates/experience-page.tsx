@@ -13,7 +13,9 @@ type ExperiencePageTemplateProps = Partial<{
             image: any | string
             heading: string
             subheading: string
-            contents: string[]
+            contents: Array<{
+                content: string
+            }>
         }>
     }
 }>
@@ -113,7 +115,9 @@ export const experiencePageQuery = graphql`
                         }
                         heading
                         subheading
-                        contents
+                        contents {
+                            content
+                        }
                     }
                 }
             }

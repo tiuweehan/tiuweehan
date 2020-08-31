@@ -9,7 +9,9 @@ import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from "swiper"
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 interface SwiperCardProps {
-    contents: string[]
+    contents: Array<{
+        content: string
+    }>
 }
 
 const SwiperCard: React.FC<SwiperCardProps> = ({ contents }) => {
@@ -40,7 +42,7 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ contents }) => {
                                 justifyContent: "center",
                             }}
                         >
-                            <MarkdownContent content={content} />
+                            <MarkdownContent content={content.content} />
                         </div>
                     )}
                 </SwiperSlide>

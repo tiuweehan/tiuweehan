@@ -78,21 +78,21 @@ work:
       heading: Cloud Architect
       subheading: Amazon Web Services
       contents:
-        - I am doing well
-        - Thanks for asking
-        - Though still kinda sad
+        - content: I am doing well
+        - content: Thanks for asking
+        - content: Though still kinda sad
     - image: /img/logos/Shopee.png
       heading: Platform Engineer
       subheading: Shopee
       contents:
-        - I am doing well
-        - Thanks for asking
-        - Though still kinda sad
+        - content: I am doing well
+        - content: Thanks for asking
+        - content: Though still kinda sad
     - image: /img/logos/CVWO.png
       heading: Project Lead
       subheading: CVWO
       contents:
-        - I am doing well
-        - Thanks for asking
-        - Though still kinda sad
+        - content: I am doing well
+        - content: Thanks for asking
+        - content: Though still kinda sad
 ---

@@ -6,7 +6,9 @@ interface Experience {
     subheading: string
     heading: string
     image: any | string
-    contents: string[]
+    contents: Array<{
+        content: string
+    }>
 }
 
 interface PropType {
