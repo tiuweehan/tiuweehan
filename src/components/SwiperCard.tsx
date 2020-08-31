@@ -9,12 +9,14 @@ import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from "swiper"
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 interface SwiperCardProps {
-    contents: Array<{
+    contents?: Array<{
         content: string
     }>
 }
 
-const SwiperCard: React.FC<SwiperCardProps> = ({ contents }) => {
+const SwiperCard: React.FC<SwiperCardProps> = (props) => {
+    const contents = props.contents || []
+
     const pagination =
         contents.length > 1
             ? {
@@ -24,12 +26,7 @@ const SwiperCard: React.FC<SwiperCardProps> = ({ contents }) => {
             : false
 
     return (
-        <Swiper
-            spaceBetween={280}
-            slidesPerView={1}
-            // navigation
-            pagination={pagination}
-        >
+        <Swiper spaceBetween={280} slidesPerView={1} pagination={pagination}>
             {contents.map((content, index) => (
                 <SwiperSlide key={index}>
                     {({ isActive }: any) => (

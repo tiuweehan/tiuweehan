@@ -1,4 +1,5 @@
 import "./ExperienceCard.css"
+import { AppEnv, useAppConfig } from "./AppConfig"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"
 
@@ -20,16 +21,29 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
     const [show, setShow] = useState<boolean>(false)
     const ourRef = useRef(null)
 
+    // Check if using Netlify CMS
+    const config = useAppConfig()
+    if (!show && config.env === AppEnv.NETLIFY_CMS) {
+        setShow(true)
+    }
+
     useLayoutEffect(() => {
         const topPos = (element: any) => element.getBoundingClientRect().top
         const divPos = topPos(ourRef.current)
+
+        // Check if already on page
+        const scrollPos = window.scrollY + window.innerHeight
+        if (divPos < scrollPos) {
+            setShow(true)
+            return
+        }
+
         const onScroll = () => {
             const scrollPos = window.scrollY + window.innerHeight
             if (divPos < scrollPos) {
                 setShow(true)
             }
         }
-        onScroll()
         window.addEventListener("scroll", onScroll)
         return () => window.removeEventListener("scroll", onScroll)
     }, [])
@@ -42,7 +56,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                         <a target="_blank" rel="noreferrer" href="#">
                             <img
                                 src={
-                                    image.childImageSharp
+                                    image && image.childImageSharp
                                         ? image.childImageSharp.fluid.src
                                         : image
                                 }

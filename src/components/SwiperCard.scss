@@ -1,21 +1,5 @@
-.swiper-button-prev,
-.swiper-button-next {
-  //top: 86%;
-  color: #777777;
-  z-index: 1000;
-}
-
-//.swiper-button-prev {
-//  margin-left: 15%;
-//}
-//
-//.swiper-button-next {
-//  margin-right: 15%
-//}
-
-.swiper-button-prev:after, .swiper-button-next:after {
-  font-size: 15px;
-  font-weight: bold;
+.swiper-pagination {
+  min-width: 80px;
 }
 
 .swiper-pagination-bullet-active {

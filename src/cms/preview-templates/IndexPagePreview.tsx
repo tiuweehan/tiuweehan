@@ -1,5 +1,7 @@
+import { AppEnv } from "../../components/AppConfig"
 import { IndexPageTemplate } from "../../templates/index-page"
 import PropTypes from "prop-types"
+import Provider from "../../components/Provider"
 import React from "react"
 
 const IndexPagePreview: React.FC<any> = ({ entry, widgetFor }) => {
@@ -7,12 +9,14 @@ const IndexPagePreview: React.FC<any> = ({ entry, widgetFor }) => {
 
     if (data) {
         return (
-            <IndexPageTemplate
-                title={data.title}
-                connections={data.connections || {}}
-                heading={data.heading}
-                content={widgetFor("body")}
-            />
+            <Provider config={{ env: AppEnv.NETLIFY_CMS }}>
+                <IndexPageTemplate
+                    title={data.title}
+                    connections={data.connections || {}}
+                    heading={data.heading}
+                    content={widgetFor("body")}
+                />
+            </Provider>
         )
     } else {
         return <div>Loading...</div>
