@@ -1,38 +1,46 @@
 import React from "react"
 
 import "./SwiperCard.scss"
-import "swiper/components/navigation/navigation.scss"
-import "swiper/components/pagination/pagination.scss"
-import "swiper/swiper.scss"
+import "swiper/swiper-bundle.min.css"
 import { MarkdownContent } from "./Content"
 import { Swiper, SwiperSlide } from "swiper/react"
 import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from "swiper"
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
-const SwiperCard: React.FC = () => {
+interface SwiperCardProps {
+    contents: string[]
+}
+
+const SwiperCard: React.FC<SwiperCardProps> = ({ contents }) => {
+    const pagination =
+        contents.length > 1
+            ? {
+                  clickable: true,
+                  dynamicBullets: true,
+              }
+            : false
+
     return (
         <Swiper
-            spaceBetween={200}
+            spaceBetween={280}
             slidesPerView={1}
             // navigation
-            pagination={{
-                clickable: true,
-                dynamicBullets: true,
-            }}
+            pagination={pagination}
         >
-            {[1, 2, 3].map((x) => (
-                <SwiperSlide key={x}>
+            {contents.map((content, index) => (
+                <SwiperSlide key={index}>
                     {({ isActive }: any) => (
                         <div
                             style={{
                                 height: "150px",
-                                width: "280px",
+                                width: "230px",
+                                padding: "10px 25px",
                                 display: "flex",
                                 justifyContent: "center",
                             }}
                         >
-                            <MarkdownContent content={"# Hello World"} />
+                            <MarkdownContent content={content} />
                         </div>
                     )}
                 </SwiperSlide>

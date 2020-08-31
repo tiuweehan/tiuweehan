@@ -6,40 +6,22 @@ import React from "react"
 type ExperiencePageTemplateProps = Partial<{
     image: any | string
     title: string
-    heading: string
-    description: string
-    intro: Partial<{
-        blurbs?: any[]
-    }>
-    main: {
+    work: {
         heading: string
         description: string
-        image1: any | string
-        image2: any | string
-        image3: any | string
-    }
-    testimonials: Array<{
-        quote?: string
-        author?: string
-    }>
-    full_image: any
-    pricing: {
-        heading: string
-        description: string
-        plans: any[]
+        experiences: Array<{
+            image: any | string
+            heading: string
+            subheading: string
+            contents: string[]
+        }>
     }
 }>
 
 export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
     image,
     title,
-    heading,
-    description,
-    intro,
-    main,
-    testimonials,
-    full_image,
-    pricing,
+    work,
 }) => (
     <div className="content">
         <div
@@ -70,10 +52,10 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
                     <div className="columns">
                         <div className="column is-10 is-offset-1">
                             <h2 className="has-text-weight-semibold is-size-2">
-                                {pricing?.heading}
+                                {work?.heading}
                             </h2>
-                            <p className="is-size-5">{pricing?.description}</p>
-                            <Pricing data={pricing?.plans} />
+                            <p className="is-size-5">{work?.description}</p>
+                            <Pricing data={work?.experiences} />
                         </div>
                     </div>
                 </div>
@@ -98,13 +80,7 @@ const ExperiencePage: React.FC<ProductPageProps> = ({ data }) => {
             <ExperiencePageTemplate
                 image={frontmatter.image}
                 title={frontmatter.title}
-                heading={frontmatter.heading}
-                description={frontmatter.description}
-                intro={frontmatter.intro}
-                main={frontmatter.main}
-                testimonials={frontmatter.testimonials}
-                full_image={frontmatter.full_image}
-                pricing={frontmatter.pricing}
+                work={frontmatter.work}
             />
         </Layout>
     )
@@ -124,75 +100,20 @@ export const experiencePageQuery = graphql`
                         }
                     }
                 }
-                heading
-                description
-                intro {
-                    blurbs {
-                        image {
-                            childImageSharp {
-                                fluid(maxWidth: 240, quality: 64) {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
-                        text
-                    }
+                work {
                     heading
                     description
-                }
-                main {
-                    heading
-                    description
-                    image1 {
-                        alt
+                    experiences {
                         image {
                             childImageSharp {
-                                fluid(maxWidth: 526, quality: 92) {
+                                fluid(maxWidth: 1000, quality: 100) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }
                         }
-                    }
-                    image2 {
-                        alt
-                        image {
-                            childImageSharp {
-                                fluid(maxWidth: 526, quality: 92) {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
-                    }
-                    image3 {
-                        alt
-                        image {
-                            childImageSharp {
-                                fluid(maxWidth: 1075, quality: 72) {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
-                    }
-                }
-                testimonials {
-                    author
-                    quote
-                }
-                full_image {
-                    childImageSharp {
-                        fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-                pricing {
-                    heading
-                    description
-                    plans {
-                        description
-                        items
-                        plan
-                        price
+                        heading
+                        subheading
+                        contents
                     }
                 }
             }

@@ -2,7 +2,19 @@ import "./ExperienceCard.css"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"
 
-const ExperienceCard: React.FC = () => {
+interface ExperienceCardProps {
+    image: any | string
+    heading: string
+    subheading: string
+    contents: string[]
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({
+    image,
+    heading,
+    subheading,
+    contents,
+}) => {
     const [show, setShow] = useState<boolean>(false)
     const ourRef = useRef(null)
 
@@ -27,25 +39,18 @@ const ExperienceCard: React.FC = () => {
                     <header>
                         <a target="_blank" rel="noreferrer" href="#">
                             <img
-                                src="http://lorempixel.com/150/150/people/"
+                                src={image.childImageSharp.fluid.src}
                                 className="hoverZoomLink"
                             />
                         </a>
 
-                        <h1>John Doe</h1>
+                        <h1>{heading}</h1>
 
-                        <h2>Better Visuals</h2>
+                        <h2>{subheading}</h2>
                     </header>
 
                     <div className="profile-bio">
-                        <SwiperCard />
-                        {/*<MarkdownContent*/}
-                        {/*    content={*/}
-                        {/*        "**It** takes monumental improvement for us to change how \*/}
-                        {/*we live our lives. Design is the way we access that \*/}
-                        {/*improvement."*/}
-                        {/*    }*/}
-                        {/*/>*/}
+                        <SwiperCard contents={contents} />
                     </div>
 
                     <ul className="profile-social-links">

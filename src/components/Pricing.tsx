@@ -2,15 +2,15 @@ import ExperienceCard from "./ExperienceCard"
 import React, { useEffect, useState } from "react"
 import _ from "lodash"
 
-type DataType = Array<{
-    plan?: string
-    price?: string | number
-    description?: string
-    items?: any[]
-}>
+interface Experience {
+    subheading: string
+    heading: string
+    image: any | string
+    contents: string[]
+}
 
 interface PropType {
-    data?: DataType
+    data?: Array<Experience>
 }
 
 interface WindowSize {
@@ -36,27 +36,38 @@ const Pricing: React.FC<PropType> = ({ data }) => {
     return renderCards(data, 1)
 }
 
-const renderCards = (data: DataType, chunks: number) => {
+const renderCards = (data: Array<Experience>, chunks: number) => {
     return (
         <>
             {_.chunk(data, chunks).map((columns, columnsIndex) => (
                 <div className="columns" key={`columns${columnsIndex}`}>
-                    {_.assign(_.fill(new Array(chunks), null), columns).map(
-                        (column, columnIndex) => (
-                            <div
-                                key={`column${columnIndex}`}
-                                className="column"
-                                style={{
-                                    minWidth: "280px",
-                                    minHeight: "440px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                {column && <ExperienceCard />}
-                            </div>
-                        )
-                    )}
+                    {_.assign(
+                        _.fill(
+                            new Array(chunks) as Array<Experience | null>,
+                            null
+                        ),
+                        columns
+                    ).map((column: Experience | null, columnIndex) => (
+                        <div
+                            key={`column${columnIndex}`}
+                            className="column"
+                            style={{
+                                minWidth: "280px",
+                                minHeight: "440px",
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            {column && (
+                                <ExperienceCard
+                                    image={column.image}
+                                    heading={column.heading}
+                                    subheading={column.subheading}
+                                    contents={column.contents}
+                                />
+                            )}
+                        </div>
+                    ))}
                 </div>
             ))}
         </>
