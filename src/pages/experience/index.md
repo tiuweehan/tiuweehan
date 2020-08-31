@@ -74,21 +74,21 @@ work:
   heading: Work experience
   description: >-
   experiences:
-    - image: /img/logos/AWS.png
+    - image: /img/logo-AWS.png
       heading: Cloud Architect
       subheading: Amazon Web Services
       contents:
         - content: I am doing well
         - content: Thanks for asking
         - content: Though still kinda sad
-    - image: /img/logos/Shopee.png
+    - image: /img/logo-Shopee.png
       heading: Platform Engineer
       subheading: Shopee
       contents:
         - content: I am doing well
         - content: Thanks for asking
         - content: Though still kinda sad
-    - image: /img/logos/CVWO.png
+    - image: /img/logo-CVWO.png
       heading: Project Lead
       subheading: CVWO
       contents:
