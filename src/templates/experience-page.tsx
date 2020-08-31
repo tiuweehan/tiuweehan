@@ -1,4 +1,5 @@
 import { graphql } from "gatsby"
+import ExperienceCard from "../components/ExperienceCard"
 import Features from "../components/Features"
 import Layout from "../components/Layout"
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
@@ -138,6 +139,7 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
                 </div>
             </div>
         </section>
+        <ExperienceCard />
     </div>
 )
 
