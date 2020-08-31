@@ -1,6 +1,6 @@
 import "./ExperienceCard.css"
-import { MarkdownContent } from "./Content"
 import React, { useLayoutEffect, useRef, useState } from "react"
+import SwiperCard from "./SwiperCard"
 
 const ExperienceCard: React.FC = () => {
     const [show, setShow] = useState<boolean>(false)
@@ -38,13 +38,14 @@ const ExperienceCard: React.FC = () => {
                     </header>
 
                     <div className="profile-bio">
-                        <MarkdownContent
-                            content={
-                                "**It** takes monumental improvement for us to change how \
-                        we live our lives. Design is the way we access that \
-                        improvement."
-                            }
-                        />
+                        <SwiperCard />
+                        {/*<MarkdownContent*/}
+                        {/*    content={*/}
+                        {/*        "**It** takes monumental improvement for us to change how \*/}
+                        {/*we live our lives. Design is the way we access that \*/}
+                        {/*improvement."*/}
+                        {/*    }*/}
+                        {/*/>*/}
                     </div>
 
                     <ul className="profile-social-links">

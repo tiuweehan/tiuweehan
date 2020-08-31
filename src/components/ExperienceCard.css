@@ -105,7 +105,6 @@
     height: 180px;
     display: inline-block;
     float: right;
-    padding: 50px 20px 30px 20px;
     background: #FFFFFF;
     color: #333333;
     margin-top: 50px;
@@ -425,7 +424,6 @@
     .profile-card .profile-bio {
         width: auto;
         height: auto;
-        padding: 15px 20px 30px 20px;
         display: block;
         float: none;
     }
