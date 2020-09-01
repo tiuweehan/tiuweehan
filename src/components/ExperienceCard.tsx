@@ -22,7 +22,7 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
     contents,
 }) => {
     const [show, setShow] = useState<boolean>(false)
-    const ourRef = useRef(null)
+    const divRef = useRef(null)
 
     // Check if using Netlify CMS
     const config = useAppConfig()
@@ -32,7 +32,7 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
 
     useLayoutEffect(() => {
         const onScroll = () => {
-            const divTopPos = topPos(ourRef.current)
+            const divTopPos = topPos(divRef.current)
 
             if (divTopPos < window.innerHeight) {
                 setShow(true)
@@ -44,7 +44,7 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
     }, [])
 
     return (
-        <div ref={ourRef} className={show ? "profile-card" : ""}>
+        <div ref={divRef} className={show ? "profile-card" : ""}>
             {show && (
                 <>
                     <header>

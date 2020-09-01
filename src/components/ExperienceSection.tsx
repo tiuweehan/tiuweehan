@@ -1,103 +1,72 @@
-import ExperienceCard, { ExperienceCardInfo } from "./ExperienceCard"
-import React, { useEffect, useState } from "react"
-import _ from "lodash"
+import "./ExperienceSection.css"
+import { AppEnv, useAppConfig } from "./AppConfig"
+import { ExperienceCardInfo } from "./ExperienceCard"
+import ExperienceCards from "./ExperienceCards"
+import React, { useLayoutEffect, useRef, useState } from "react"
 
-interface PropType {
-    data?: Array<ExperienceCardInfo>
+export interface ExperienceSectionInfo {
+    type: string
+    heading: string
+    description: string
+    cards: Array<ExperienceCardInfo>
 }
 
-interface WindowSize {
-    width: number
-    height: number
-}
+const topPos = (element: any) => element.getBoundingClientRect().top
 
-const ExperienceSection: React.FC<PropType> = ({ data }) => {
-    const width = useWindowSize().width
+const ExperienceSection: React.FC<{ experience: ExperienceSectionInfo }> = ({
+    experience,
+}) => {
+    const [show, setShow] = useState<boolean>(false)
+    const sectionRef = useRef(null)
 
-    if (!data) {
-        return null
+    // Check if using Netlify CMS
+    const config = useAppConfig()
+    if (!show && config.env === AppEnv.NETLIFY_CMS) {
+        setShow(true)
     }
 
-    if (width > 1200) {
-        return renderCards(data, 3)
-    }
+    useLayoutEffect(() => {
+        const onScroll = () => {
+            const divTopPos = topPos(sectionRef.current)
 
-    if (width > 800) {
-        return renderCards(data, 2)
-    }
-
-    return renderCards(data, 1)
-}
-
-const renderCards = (data: Array<ExperienceCardInfo>, chunks: number) => {
-    return (
-        <>
-            {_.chunk(data, chunks).map((columns, columnsIndex) => (
-                <div className="columns" key={`columns${columnsIndex}`}>
-                    {_.assign(
-                        _.fill(
-                            new Array(
-                                chunks
-                            ) as Array<ExperienceCardInfo | null>,
-                            null
-                        ),
-                        columns
-                    ).map((column: ExperienceCardInfo | null, columnIndex) => (
-                        <div
-                            key={`column${columnIndex}`}
-                            className="column"
-                            style={{
-                                minWidth: "280px",
-                                minHeight: "465px",
-                                display: "flex",
-                                justifyContent: "center",
-                            }}
-                        >
-                            {column && (
-                                <ExperienceCard
-                                    image={column.image}
-                                    heading={column.heading}
-                                    subheading={column.subheading}
-                                    contents={column.contents}
-                                />
-                            )}
-                        </div>
-                    ))}
-                </div>
-            ))}
-        </>
-    )
-}
-
-const useWindowSize: () => WindowSize = () => {
-    // Initialize state with undefined width/height so server and client renders match
-    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-    const [windowSize, setWindowSize] = useState<WindowSize>({
-        width: 0,
-        height: 0,
-    })
-
-    useEffect(() => {
-        // Handler to call on window resize
-        function handleResize() {
-            // Set window width/height to state
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            })
+            setShow(divTopPos > -50 && divTopPos < window.innerHeight)
         }
+        onScroll()
+        window.addEventListener("scroll", onScroll)
+        return () => window.removeEventListener("scroll", onScroll)
+    }, [])
 
-        // Add event listener
-        window.addEventListener("resize", handleResize)
-
-        // Call handler right away so state gets updated with initial window size
-        handleResize()
-
-        // Remove event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize)
-    }, []) // Empty array ensures that effect is only run on mount
-
-    return windowSize
+    return (
+        <section ref={sectionRef} className="section section--gradient">
+            <div className="container has-text-centered">
+                <div className="columns">
+                    <div className="column is-10 is-offset-1">
+                        <h2
+                            className={`experience-header ${
+                                show ? "experience-header-visible" : ""
+                            } has-text-weight-normal is-size-3`}
+                            style={
+                                {
+                                    // fontSize: "3rem",
+                                    // fontWeight: 700,
+                                    // borderBottom: "4px solid #FF642B",
+                                    // display: "inline-block",
+                                    // paddingBottom: "2px",
+                                    // fontFamily: "sans-serif",
+                                    // color: "#444",
+                                }
+                            }
+                        >
+                            {experience?.heading}
+                        </h2>
+                        <br />
+                        <p className="is-size-5">{experience?.description}</p>
+                        <ExperienceCards data={experience?.cards} />
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }
 
 export default ExperienceSection

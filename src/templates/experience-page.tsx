@@ -1,18 +1,14 @@
-import { ExperienceCardInfo } from "../components/ExperienceCard"
 import { graphql } from "gatsby"
-import ExperienceSection from "../components/ExperienceSection"
+import ExperienceSection, {
+    ExperienceSectionInfo,
+} from "../components/ExperienceSection"
 import Layout from "../components/Layout"
 import React from "react"
 
 type ExperiencePageTemplateProps = Partial<{
     image: any | string
     title: string
-    experiences: Array<{
-        type: string
-        heading: string
-        description: string
-        cards: Array<ExperienceCardInfo>
-    }>
+    experiences: Array<ExperienceSectionInfo>
 }>
 
 export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
@@ -43,27 +39,8 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
                 {title}
             </h2>
         </div>
-        {experiences?.map((experience, index) => (
-            <section
-                key={experience?.type || index}
-                className="section section--gradient"
-            >
-                <div className="container">
-                    <div className="section">
-                        <div className="columns">
-                            <div className="column is-10 is-offset-1">
-                                <h2 className="has-text-weight-semibold is-size-2">
-                                    {experience?.heading}
-                                </h2>
-                                <p className="is-size-5">
-                                    {experience?.description}
-                                </p>
-                                <ExperienceSection data={experience?.cards} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        {experiences?.map((experience) => (
+            <ExperienceSection key={experience.type} experience={experience} />
         ))}
     </div>
 )
