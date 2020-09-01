@@ -32,7 +32,7 @@ const SwiperCard: React.FC<SwiperCardProps> = (props) => {
                     {({ isActive }: any) => (
                         <div
                             style={{
-                                height: "150px",
+                                height: "210px",
                                 width: "230px",
                                 padding: "10px 25px",
                                 display: "flex",

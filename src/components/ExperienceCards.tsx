@@ -48,7 +48,7 @@ const renderCards = (data: Array<ExperienceCardInfo>, chunks: number) => {
                             className="column"
                             style={{
                                 minWidth: "280px",
-                                minHeight: "500px",
+                                minHeight: "530px",
                                 display: "flex",
                                 justifyContent: "center",
                             }}
