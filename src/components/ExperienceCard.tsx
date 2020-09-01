@@ -1,5 +1,6 @@
 import "./ExperienceCard.css"
 import { AppEnv, useAppConfig } from "./AppConfig"
+import { renderImage } from "../utils/ImageUtils"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"
 
@@ -54,14 +55,12 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                 <>
                     <header>
                         <a target="_blank" rel="noreferrer" href="#">
-                            <img
-                                src={
-                                    image && image.childImageSharp
-                                        ? image.childImageSharp.fluid.src
-                                        : image
-                                }
-                                className="hoverZoomLink"
-                            />
+                            {image && (
+                                <img
+                                    src={renderImage(image)}
+                                    className="hoverZoomLink"
+                                />
+                            )}
                         </a>
 
                         <h1>{heading}</h1>

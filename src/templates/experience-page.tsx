@@ -101,6 +101,8 @@ export const experiencePageQuery = graphql`
                             ...GatsbyImageSharpFluid
                         }
                     }
+                    extension
+                    publicURL
                 }
                 work {
                     heading
@@ -112,6 +114,8 @@ export const experiencePageQuery = graphql`
                                     ...GatsbyImageSharpFluid
                                 }
                             }
+                            extension
+                            publicURL
                         }
                         heading
                         subheading

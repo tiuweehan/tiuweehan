@@ -5,21 +5,17 @@ import React from "react"
 import BlogRoll from "../components/BlogRoll"
 import Layout from "../components/Layout"
 
+import { renderImage } from "../utils/ImageUtils"
 import Content, { HTMLContent } from "../components/Content"
-import email from "../img/social/email.svg"
-import facebook from "../img/social/facebook.svg"
-import github from "../img/social/github.svg"
-import linkedin from "../img/social/linkedin.svg"
 
 interface IndexPageTemplateProps {
     title?: string
     heading?: string
-    connections?: {
-        github: string
-        linkedin: string
-        email: string
-        facebook: string
-    }
+    connections?: Array<{
+        name: string
+        logo: any | string
+        link: string
+    }>
     content?: string | null
     contentComponent?: React.FC<any>
 }
@@ -88,55 +84,21 @@ export const IndexPageTemplate = ({
                         </span>
                     </h1>
                     <div className="social" style={{ width: "300px" }}>
-                        <a
-                            title="GitHub"
-                            href={connections?.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={github}
-                                alt="GitHub"
-                                style={{ width: "1em", height: "1em" }}
-                            />
-                        </a>
-                        <a
-                            title="LinkedIn"
-                            href={connections?.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                className="fas fa-lg"
-                                src={linkedin}
-                                alt="LinkedIn"
-                                style={{ width: "1em", height: "1em" }}
-                            />
-                        </a>
-                        <a
-                            title="Email"
-                            href={`mailto:${connections?.email}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={email}
-                                alt="Email"
-                                style={{ width: "1em", height: "1em" }}
-                            />
-                        </a>
-                        <a
-                            title="Facebook"
-                            href={connections?.facebook}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <img
-                                src={facebook}
-                                alt="Facebook"
-                                style={{ width: "1em", height: "1em" }}
-                            />
-                        </a>
+                        {connections?.map((connection) => (
+                            <a
+                                key={name}
+                                title={name}
+                                href={connection.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    src={renderImage(connection.logo)}
+                                    alt={connection.name}
+                                    style={{ width: "1em", height: "1em" }}
+                                />
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -226,10 +188,12 @@ export const pageQuery = graphql`
                 title
                 heading
                 connections {
-                    github
-                    linkedin
-                    email
-                    facebook
+                    name
+                    logo {
+                        extension
+                        publicURL
+                    }
+                    link
                 }
             }
         }

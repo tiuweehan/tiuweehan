@@ -95,6 +95,8 @@ export default () => (
                                             ...GatsbyImageSharpFluid
                                         }
                                     }
+                                    extension
+                                    publicURL
                                 }
                             }
                         }

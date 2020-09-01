@@ -2,10 +2,18 @@
 templateKey: index-page
 title: Tiu Wee Han
 connections:
-  github: https://github.com/tiuweehan
-  email: contact@tiuweehan.com
-  linkedin: https://www.linkedin.com/in/wee-han/
-  facebook: https://www.facebook.com/Weegieee/
+  - name: GitHub
+    logo: /img/logo-github.svg
+    link: https://github.com/tiuweehan
+  - name: Email
+    logo: /img/logo-email.svg
+    link: contact@tiuweehan.com
+  - name: LinkedIn
+    logo: /img/logo-linkedin.svg
+    link: https://www.linkedin.com/in/wee-han/
+  - name: Facebook
+    logo: /img/logo-facebook.svg
+    link: https://www.facebook.com/Weegieee/
 heading: Hello World!
 ---
 My name is Wee Han and I am an undergraduate student at the [National University of Singapore](http://www.nus.edu.sg/).

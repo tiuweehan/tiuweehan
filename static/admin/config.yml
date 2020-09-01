@@ -36,7 +36,7 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: "Title", name: "title", widget: "string"}
-          - {label: "Connections", name: "connections", widget: "object", fields: [{label: "GitHub", name: "github", widget: "string"}, {label: "LinkedIn", name: "linkedin", widget: "string"}, {label: "Email", name: "email", widget: "string"}, {label: "Facebook", name: "facebook", widget: "string"}]}
+          - {label: "Connections", name: "connections", widget: "list", fields: [{label: "Name", name: "name", widget: "string"}, {label: "Logo", name: "logo", widget: "image"}, {label: "Link", name: "link", widget: "string"}]}
           - {label: "Heading", name: "heading", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
       - file: "src/pages/about/index.md"
