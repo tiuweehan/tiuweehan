@@ -1,18 +1,9 @@
-import ExperienceCard from "./ExperienceCard"
+import ExperienceCard, { ExperienceCardInfo } from "./ExperienceCard"
 import React, { useEffect, useState } from "react"
 import _ from "lodash"
 
-interface Experience {
-    subheading: string
-    heading: string
-    image: any | string
-    contents: Array<{
-        content: string
-    }>
-}
-
 interface PropType {
-    data?: Array<Experience>
+    data?: Array<ExperienceCardInfo>
 }
 
 interface WindowSize {
@@ -20,7 +11,7 @@ interface WindowSize {
     height: number
 }
 
-const Pricing: React.FC<PropType> = ({ data }) => {
+const ExperienceSection: React.FC<PropType> = ({ data }) => {
     const width = useWindowSize().width
 
     if (!data) {
@@ -38,24 +29,26 @@ const Pricing: React.FC<PropType> = ({ data }) => {
     return renderCards(data, 1)
 }
 
-const renderCards = (data: Array<Experience>, chunks: number) => {
+const renderCards = (data: Array<ExperienceCardInfo>, chunks: number) => {
     return (
         <>
             {_.chunk(data, chunks).map((columns, columnsIndex) => (
                 <div className="columns" key={`columns${columnsIndex}`}>
                     {_.assign(
                         _.fill(
-                            new Array(chunks) as Array<Experience | null>,
+                            new Array(
+                                chunks
+                            ) as Array<ExperienceCardInfo | null>,
                             null
                         ),
                         columns
-                    ).map((column: Experience | null, columnIndex) => (
+                    ).map((column: ExperienceCardInfo | null, columnIndex) => (
                         <div
                             key={`column${columnIndex}`}
                             className="column"
                             style={{
                                 minWidth: "280px",
-                                minHeight: "440px",
+                                minHeight: "465px",
                                 display: "flex",
                                 justifyContent: "center",
                             }}
@@ -107,4 +100,4 @@ const useWindowSize: () => WindowSize = () => {
     return windowSize
 }
 
-export default Pricing
+export default ExperienceSection

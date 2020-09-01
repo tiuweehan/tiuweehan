@@ -86,8 +86,8 @@ export const IndexPageTemplate = ({
                     <div className="social" style={{ width: "300px" }}>
                         {connections?.map((connection) => (
                             <a
-                                key={name}
-                                title={name}
+                                key={connection.name}
+                                title={connection.name}
                                 href={connection.link}
                                 target="_blank"
                                 rel="noopener noreferrer"

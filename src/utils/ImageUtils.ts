@@ -10,7 +10,14 @@ interface ImageFields {
     publicURL: string
 }
 
-export const renderImage = (image: ImageFields) => {
+type Image = ImageFields | string
+
+export const renderImage = (image: Image) => {
+    // Netlify CMS
+    if (typeof image === "string") {
+        return image
+    }
+
     // PNG, JPG
     if (image.childImageSharp) {
         return image.childImageSharp.fluid.src

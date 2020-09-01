@@ -1,29 +1,24 @@
+import { ExperienceCardInfo } from "../components/ExperienceCard"
 import { graphql } from "gatsby"
+import ExperienceSection from "../components/ExperienceSection"
 import Layout from "../components/Layout"
-import Pricing from "../components/Pricing"
 import React from "react"
 
 type ExperiencePageTemplateProps = Partial<{
     image: any | string
     title: string
-    work: {
+    experiences: Array<{
+        type: string
         heading: string
         description: string
-        experiences: Array<{
-            image: any | string
-            heading: string
-            subheading: string
-            contents: Array<{
-                content: string
-            }>
-        }>
-    }
+        cards: Array<ExperienceCardInfo>
+    }>
 }>
 
 export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
     image,
     title,
-    work,
+    experiences,
 }) => (
     <div className="content">
         <div
@@ -48,21 +43,28 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
                 {title}
             </h2>
         </div>
-        <section className="section section--gradient">
-            <div className="container">
-                <div className="section">
-                    <div className="columns">
-                        <div className="column is-10 is-offset-1">
-                            <h2 className="has-text-weight-semibold is-size-2">
-                                {work?.heading}
-                            </h2>
-                            <p className="is-size-5">{work?.description}</p>
-                            <Pricing data={work?.experiences} />
+        {experiences?.map((experience, index) => (
+            <section
+                key={experience?.type || index}
+                className="section section--gradient"
+            >
+                <div className="container">
+                    <div className="section">
+                        <div className="columns">
+                            <div className="column is-10 is-offset-1">
+                                <h2 className="has-text-weight-semibold is-size-2">
+                                    {experience?.heading}
+                                </h2>
+                                <p className="is-size-5">
+                                    {experience?.description}
+                                </p>
+                                <ExperienceSection data={experience?.cards} />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        ))}
     </div>
 )
 
@@ -82,7 +84,7 @@ const ExperiencePage: React.FC<ProductPageProps> = ({ data }) => {
             <ExperiencePageTemplate
                 image={frontmatter.image}
                 title={frontmatter.title}
-                work={frontmatter.work}
+                experiences={frontmatter.experiences}
             />
         </Layout>
     )
@@ -104,10 +106,11 @@ export const experiencePageQuery = graphql`
                     extension
                     publicURL
                 }
-                work {
+                experiences {
+                    type
                     heading
                     description
-                    experiences {
+                    cards {
                         image {
                             childImageSharp {
                                 fluid(maxWidth: 1000, quality: 100) {

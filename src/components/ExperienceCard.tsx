@@ -4,7 +4,7 @@ import { renderImage } from "../utils/ImageUtils"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"
 
-interface ExperienceCardProps {
+export interface ExperienceCardInfo {
     image: any | string
     heading: string
     subheading: string
@@ -13,7 +13,9 @@ interface ExperienceCardProps {
     }>
 }
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({
+const topPos = (element: any) => element.getBoundingClientRect().top
+
+const ExperienceCard: React.FC<ExperienceCardInfo> = ({
     image,
     heading,
     subheading,
@@ -29,22 +31,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
     }
 
     useLayoutEffect(() => {
-        const topPos = (element: any) => element.getBoundingClientRect().top
-        const divPos = topPos(ourRef.current)
-
-        // Check if already on page
-        const scrollPos = window.scrollY + window.innerHeight
-        if (divPos < scrollPos) {
-            setShow(true)
-            return
-        }
-
         const onScroll = () => {
-            const scrollPos = window.scrollY + window.innerHeight
-            if (divPos < scrollPos) {
+            const divTopPos = topPos(ourRef.current)
+
+            if (divTopPos < window.innerHeight) {
                 setShow(true)
             }
         }
+        onScroll()
         window.addEventListener("scroll", onScroll)
         return () => window.removeEventListener("scroll", onScroll)
     }, [])
