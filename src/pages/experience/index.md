@@ -95,4 +95,11 @@ work:
         - content: I am doing well
         - content: Thanks for asking
         - content: Though still kinda sad
+    - image: /img/logo-CSI.png
+      heading: Data Analyst
+      subheading: Cancer Science Institute
+      contents:
+        - content: I am doing well
+        - content: Thanks for asking
+        - content: Though still kinda sad
 ---
