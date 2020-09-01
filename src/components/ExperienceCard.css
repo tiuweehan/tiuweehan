@@ -14,7 +14,6 @@
 }
 
 .profile-card h2 {
-    padding: 0 10%;
     color: black;
     font-size: 15px !important;
 }
@@ -120,10 +119,8 @@
     width: 218px;
     display: inline-block;
     float: right;
-    margin: 0px;
-    padding: 15px 20px;
+    padding: 25px 0px;
     background: #FFFFFF;
-    margin-top: 50px;
     text-align: center;
     opacity: 0;
     -webkit-box-sizing: border-box;
@@ -132,35 +129,12 @@
     animation: moveIn 1s 0.6s ease forwards;
 }
 
-.profile-social-links li {
-    list-style: none;
-    margin: -5px 0px 0px 0px;
-    padding: 0px;
-    float: left;
-    width: 25%;
-    text-align: center;
+.profile-social-links svg {
+    opacity: 0.5;
 }
 
-.profile-social-links li a {
-    display: inline-block;
-    color: red;
-    width: 24px;
-    height: 24px;
-    padding: 6px;
-    position: relative;
-    overflow: hidden!important;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-.profile-social-links li a i {
-    position: relative;
-    z-index: 1;
-}
-
-.profile-social-links li a img,
-.profile-social-links li a svg {
-    width: 24px;
+.profile-social-links svg:hover {
+    opacity: 0.8;
 }
 
 @-webkit-keyframes init {
@@ -293,7 +267,7 @@
         -webkit-border-radius: 4px;
     }
     100% {
-        width: 440px;
+        width: 460px;
         height: 280px;
         background: #FFFFFF;
         -webkit-border-radius: 4px;
@@ -308,7 +282,7 @@
         border-radius: 4px;
     }
     100% {
-        width: 440px;
+        width: 460px;
         height: 280px;
         background: #FFFFFF;
         border-radius: 4px;
@@ -443,7 +417,7 @@
         }
         100% {
             width: 280px;
-            height: 440px;
+            height: 460px;
             background: #FFFFFF;
             -webkit-border-radius: 4px;
         }
@@ -457,7 +431,7 @@
         }
         100% {
             width: 280px;
-            height: 440px;
+            height: 460px;
             background: #FFFFFF;
             border-radius: 4px;
         }

@@ -1,25 +1,36 @@
 import "./ExperienceCard.css"
 import { AppEnv, useAppConfig } from "./AppConfig"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { renderImage } from "../utils/ImageUtils"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"
 
 export interface ExperienceCardInfo {
+    name: string
+    link: string
     image: any | string
     heading: string
     subheading: string
     contents: Array<{
         content: string
     }>
+    socials: Array<{
+        name: string
+        logo: any | string
+        link: string
+    }>
 }
 
 const topPos = (element: any) => element.getBoundingClientRect().top
 
 const ExperienceCard: React.FC<ExperienceCardInfo> = ({
+    name,
+    link,
     image,
     heading,
     subheading,
     contents,
+    socials,
 }) => {
     const [show, setShow] = useState<boolean>(false)
     const divRef = useRef(null)
@@ -48,10 +59,11 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
             {show && (
                 <>
                     <header>
-                        <a target="_blank" rel="noreferrer" href="#">
+                        <a target="_blank" rel="noreferrer" href={link}>
                             {image && (
                                 <img
                                     src={renderImage(image)}
+                                    alt={name}
                                     className="hoverZoomLink"
                                 />
                             )}
@@ -66,44 +78,37 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
                         <SwiperCard contents={contents} />
                     </div>
 
-                    <ul className="profile-social-links">
-                        <li>
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://www.facebook.com/creativedonut"
+                    <div
+                        className="profile-social-links"
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        {socials?.map((social) => (
+                            <div
+                                key={`${subheading}-${social.name}`}
+                                style={{
+                                    padding: "0px 10px",
+                                }}
                             >
-                                <i className="fa fa-facebook" />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://twitter.com/dropyourbass"
-                            >
-                                <i className="fa fa-twitter" />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://github.com/vipulsaxena"
-                            >
-                                <i className="fa fa-github" />
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                target="_blank"
-                                rel="noreferrer"
-                                href="https://www.behance.net/vipulsaxena"
-                            >
-                                <i className="fa fa-behance" />
-                            </a>
-                        </li>
-                    </ul>
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    href={social.link}
+                                >
+                                    <FontAwesomeIcon
+                                        icon={["fab", social.logo]}
+                                        style={{
+                                            transform: "scale(1.5)",
+                                            color: "#000",
+                                        }}
+                                    />
+                                </a>
+                            </div>
+                        ))}
+                    </div>
                 </>
             )}
         </div>

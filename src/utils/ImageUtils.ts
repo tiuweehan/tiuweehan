@@ -18,6 +18,10 @@ export const renderImage = (image: Image) => {
         return image
     }
 
+    if (!image) {
+        return ""
+    }
+
     // PNG, JPG
     if (image.childImageSharp) {
         return image.childImageSharp.fluid.src

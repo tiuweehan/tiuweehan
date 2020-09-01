@@ -45,17 +45,6 @@ const ExperienceSection: React.FC<{ experience: ExperienceSectionInfo }> = ({
                             className={`experience-header ${
                                 show ? "experience-header-visible" : ""
                             } has-text-weight-normal is-size-3`}
-                            style={
-                                {
-                                    // fontSize: "3rem",
-                                    // fontWeight: 700,
-                                    // borderBottom: "4px solid #FF642B",
-                                    // display: "inline-block",
-                                    // paddingBottom: "2px",
-                                    // fontFamily: "sans-serif",
-                                    // color: "#444",
-                                }
-                            }
                         >
                             {experience?.heading}
                         </h2>

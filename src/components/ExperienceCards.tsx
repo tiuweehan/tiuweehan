@@ -48,19 +48,12 @@ const renderCards = (data: Array<ExperienceCardInfo>, chunks: number) => {
                             className="column"
                             style={{
                                 minWidth: "280px",
-                                minHeight: "465px",
+                                minHeight: "500px",
                                 display: "flex",
                                 justifyContent: "center",
                             }}
                         >
-                            {column && (
-                                <ExperienceCard
-                                    image={column.image}
-                                    heading={column.heading}
-                                    subheading={column.subheading}
-                                    contents={column.contents}
-                                />
-                            )}
+                            {column && <ExperienceCard {...column} />}
                         </div>
                     ))}
                 </div>

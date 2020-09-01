@@ -1,11 +1,15 @@
 import "./all.sass"
 import { Helmet } from "react-helmet"
+import { fab } from "@fortawesome/free-brands-svg-icons"
+import { library } from "@fortawesome/fontawesome-svg-core"
 import { withPrefix } from "gatsby"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Provider from "./Provider"
 import React from "react"
 import useSiteMetadata from "./SiteMetadata"
+
+library.add(fab)
 
 const TemplateWrapper: React.FC = ({ children }) => {
     const { title, description } = useSiteMetadata()

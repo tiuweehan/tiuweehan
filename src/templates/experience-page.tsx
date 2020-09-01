@@ -88,6 +88,8 @@ export const experiencePageQuery = graphql`
                     heading
                     description
                     cards {
+                        name
+                        link
                         image {
                             childImageSharp {
                                 fluid(maxWidth: 1000, quality: 100) {
@@ -101,6 +103,11 @@ export const experiencePageQuery = graphql`
                         subheading
                         contents {
                             content
+                        }
+                        socials {
+                            name
+                            logo
+                            link
                         }
                     }
                 }
