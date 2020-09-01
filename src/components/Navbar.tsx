@@ -1,3 +1,4 @@
+import "./Navbar.css"
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import logo from "../img/twh.svg"
@@ -34,7 +35,7 @@ const Navbar: React.FC = () => {
                             style={{ width: "25px", height: "30px" }}
                         />
                         <div style={{ width: "10px" }} />
-                        <h1>Tiu Wee Han</h1>
+                        <h1 className="navbar-menu-item">Tiu Wee Han</h1>
                     </Link>
                     {/* Hamburger menu */}
                     <div
@@ -53,19 +54,13 @@ const Navbar: React.FC = () => {
                 >
                     <div className="navbar-end has-text-centered">
                         <Link className="navbar-item" to="/">
-                            About
+                            <span className="navbar-menu-item">About</span>
                         </Link>
                         <Link className="navbar-item" to="/experience">
-                            Experience
+                            <span className="navbar-menu-item">Experience</span>
                         </Link>
                         <Link className="navbar-item" to="/blog">
-                            Blog
-                        </Link>
-                        <Link className="navbar-item" to="/contact">
-                            Contact
-                        </Link>
-                        <Link className="navbar-item" to="/contact/examples">
-                            Form Examples
+                            <span className="navbar-menu-item">Blog</span>
                         </Link>
                     </div>
                 </div>
