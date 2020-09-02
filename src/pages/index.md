@@ -15,6 +15,7 @@ connections:
     logo: /img/logo-facebook.svg
     link: https://www.facebook.com/Weegieee/
 heading: Hello World!
+resume: /img/resume.pdf
 ---
 My name is Wee Han and I am an undergraduate student at the [National University of Singapore](http://www.nus.edu.sg/).
 
@@ -27,5 +28,3 @@ My name is Wee Han and I am an undergraduate student at the [National University
 I started programming in August 2018 and have not looked back since.
 
 I enjoy learning and teaching as well as doing DevOps related stuff.
-
-Find my resume here.

@@ -16,6 +16,9 @@ interface IndexPageTemplateProps {
         logo: any | string
         link: string
     }>
+    resume?: {
+        publicURL: string
+    }
     content?: string | null
     contentComponent?: React.FC<any>
 }
@@ -24,6 +27,7 @@ export const IndexPageTemplate = ({
     title,
     heading,
     connections,
+    resume,
     content,
     contentComponent,
 }: IndexPageTemplateProps) => {
@@ -122,6 +126,17 @@ export const IndexPageTemplate = ({
                                                 className="content"
                                                 content={content}
                                             />
+                                            <p>
+                                                Find my resume{" "}
+                                                <a
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    href={resume?.publicURL}
+                                                >
+                                                    here
+                                                </a>
+                                                .
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -170,6 +185,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             <IndexPageTemplate
                 title={post.frontmatter.title}
                 heading={post.frontmatter.heading}
+                resume={post.frontmatter.resume}
                 connections={post.frontmatter.connections}
                 contentComponent={HTMLContent}
                 content={post.html}
@@ -194,6 +210,9 @@ export const pageQuery = graphql`
                         publicURL
                     }
                     link
+                }
+                resume {
+                    publicURL
                 }
             }
         }

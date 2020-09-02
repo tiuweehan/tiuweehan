@@ -12,8 +12,9 @@ const IndexPagePreview: React.FC<any> = ({ entry, widgetFor }) => {
             <Provider config={{ env: AppEnv.NETLIFY_CMS }}>
                 <IndexPageTemplate
                     title={data.title}
-                    connections={data.connections || {}}
                     heading={data.heading}
+                    connections={data.connections || {}}
+                    resume={data.resume}
                     content={widgetFor("body")}
                 />
             </Provider>
