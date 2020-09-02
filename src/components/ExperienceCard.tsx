@@ -55,7 +55,7 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
     }, [])
 
     return (
-        <div ref={divRef} className={show ? "profile-card" : ""}>
+        <aside ref={divRef} className={show ? "profile-card" : ""}>
             {show && (
                 <>
                     <header>
@@ -111,7 +111,7 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
                     </div>
                 </>
             )}
-        </div>
+        </aside>
     )
 }
 

@@ -40,8 +40,8 @@
 
 .profile-card header {
     width: 179px;
-    height: 280px;
-    padding: 40px 20px 30px 20px;
+    height: 240px;
+    padding: 0px 20px;
     display: inline-block;
     float: left;
     border-right: 2px dashed #EEEEEE;
@@ -102,10 +102,10 @@
 }
 
 .profile-card .profile-bio {
-    width: 175px;
+    width: 280px;
     height: 180px;
     display: inline-block;
-    float: right;
+    float: none;
     background: #FFFFFF;
     color: #333333;
     margin-top: 50px;
@@ -116,10 +116,10 @@
 }
 
 .profile-social-links {
-    width: 218px;
     display: inline-block;
-    float: right;
-    padding: 10px 0px;
+    float: none;
+    margin-top: 0 !important;
+    padding: 0;
     background: #FFFFFF;
     text-align: center;
     opacity: 0;
@@ -296,7 +296,7 @@
     }
     100% {
         opacity: 1;
-        margin-top: -20px;
+        margin-top: 20px;
     }
 }
 
@@ -307,7 +307,7 @@
     }
     100% {
         opacity: 1;
-        margin-top: -20px;
+        margin-top: 20px;
     }
 }
 
@@ -388,11 +388,13 @@
     }
 }
 
-@media screen and (min-height: 480px) {
+/* Vertical or Horizontal */
+/*@media screen and (min-height: 530px), (max-width: 530px), (min-width: 800px) {*/
+@media screen and (min-height: 0px) {
     .profile-card header {
         width: auto;
         height: auto;
-        padding: 30px 20px;
+        padding: 0px 20px;
         display: block;
         float: none;
         border-right: none;

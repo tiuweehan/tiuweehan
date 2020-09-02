@@ -34,7 +34,7 @@ const SwiperCard: React.FC<SwiperCardProps> = (props) => {
                             style={{
                                 height: "210px",
                                 width: "230px",
-                                padding: "10px 25px",
+                                padding: "0px 25px",
                                 display: "flex",
                                 justifyContent: "center",
                             }}
