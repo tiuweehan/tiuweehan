@@ -1,3 +1,4 @@
+import "./experience-page.scss"
 import { IPageProps } from "../../types/location-types"
 import { graphql } from "gatsby"
 import ExperienceSection, {
@@ -5,6 +6,7 @@ import ExperienceSection, {
 } from "../components/ExperienceSection"
 import Layout from "../components/Layout"
 import React from "react"
+import _ from "lodash"
 
 type ExperiencePageTemplateProps = Partial<{
     image: any | string
@@ -18,26 +20,49 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
     experiences,
 }) => (
     <div className="content">
-        <div
-            className="full-width-image-container margin-top-0"
-            style={{
-                backgroundImage: `url(${
-                    image.childImageSharp
-                        ? image.childImageSharp.fluid.src
-                        : image
-                })`,
-            }}
-        >
+        <div className="full-width-image-container margin-top-0">
+            <div className="shooting-star-container">
+                <div className="night">
+                    {_.times(15, _.constant(null)).map((__, j) => (
+                        <div
+                            key={`shooting-star-1-${j}`}
+                            className="shooting_star_1"
+                        />
+                    ))}
+                </div>
+                <div className="night">
+                    {_.times(15, _.constant(null)).map((__, j) => (
+                        <div
+                            key={`shooting-star-2-${j}`}
+                            className="shooting_star_2"
+                        />
+                    ))}
+                </div>
+            </div>
             <h2
                 className="has-text-weight-bold is-size-1"
                 style={{
-                    boxShadow: "0.5rem 0 0 #f40, -0.5rem 0 0 #f40",
-                    backgroundColor: "#f40",
+                    backgroundColor: "transparent",
                     color: "white",
+                    lineHeight: "1",
+                    margin: 0,
                     padding: "1rem",
+                    zIndex: 999,
                 }}
             >
-                {title}
+                <span
+                    style={{
+                        background: "-webkit-linear-gradient(white, #38495a)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        fontFamily: "lato, sans-serif",
+                        fontWeight: 500,
+                        fontSize: "50px",
+                        letterSpacing: "1px",
+                    }}
+                >
+                    {title}
+                </span>
             </h2>
         </div>
         {experiences?.map((experience) => (
