@@ -1,6 +1,5 @@
 import "./ExperienceCard.css"
 import { AppEnv, useAppConfig } from "./AppConfig"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { renderImage } from "../utils/ImageUtils"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"
@@ -78,37 +77,38 @@ const ExperienceCard: React.FC<ExperienceCardInfo> = ({
                         <SwiperCard contents={contents} />
                     </div>
 
-                    <div
-                        className="profile-social-links"
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        {socials?.map((social) => (
-                            <div
-                                key={`${subheading}-${social.name}`}
-                                style={{
-                                    padding: "0px 10px",
-                                }}
-                            >
-                                <a
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    href={social.link}
-                                >
-                                    <FontAwesomeIcon
-                                        icon={["fab", social.logo]}
-                                        style={{
-                                            transform: "scale(1.5)",
-                                            color: "#000",
-                                        }}
-                                    />
-                                </a>
-                            </div>
-                        ))}
-                    </div>
+                    {/*Uncomment to include social links*/}
+                    {/*<div*/}
+                    {/*    className="profile-social-links"*/}
+                    {/*    style={{*/}
+                    {/*        display: "flex",*/}
+                    {/*        justifyContent: "center",*/}
+                    {/*        alignItems: "center",*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    {socials?.map((social) => (*/}
+                    {/*        <div*/}
+                    {/*            key={`${subheading}-${social.name}`}*/}
+                    {/*            style={{*/}
+                    {/*                padding: "0px 10px",*/}
+                    {/*            }}*/}
+                    {/*        >*/}
+                    {/*            <a*/}
+                    {/*                target="_blank"*/}
+                    {/*                rel="noreferrer"*/}
+                    {/*                href={social.link}*/}
+                    {/*            >*/}
+                    {/*                <FontAwesomeIcon*/}
+                    {/*                    icon={["fab", social.logo]}*/}
+                    {/*                    style={{*/}
+                    {/*                        transform: "scale(1.5)",*/}
+                    {/*                        color: "#000",*/}
+                    {/*                    }}*/}
+                    {/*                />*/}
+                    {/*            </a>*/}
+                    {/*        </div>*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
                 </>
             )}
         </aside>
