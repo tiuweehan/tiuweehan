@@ -7,7 +7,7 @@ const BlogPage = () => (
         <div
             className="full-width-image-container margin-top-0"
             style={{
-                backgroundImage: `url('/img/blog-index.jpg')`
+                backgroundImage: `url('/img/blog-index.jpg')`,
             }}
         >
             <h1
@@ -16,10 +16,10 @@ const BlogPage = () => (
                     boxShadow: "0.5rem 0 0 #f40, -0.5rem 0 0 #f40",
                     backgroundColor: "#f40",
                     color: "white",
-                    padding: "1rem"
+                    padding: "1rem",
                 }}
             >
-                Latest Stories
+                Blog Posts
             </h1>
         </div>
         <section className="section">
