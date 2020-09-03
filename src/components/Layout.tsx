@@ -24,17 +24,17 @@ const TemplateWrapper: React.FC = ({ children }) => {
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
-                        href={`${withPrefix("/")}img/apple-touch-icon.png`}
+                        href={`${withPrefix("/")}img/apple-touch-icon-twh.png`}
                     />
                     <link
                         rel="icon"
                         type="image/svg+xml"
-                        href={`${withPrefix("/")}img/favicon.svg`}
+                        href={`${withPrefix("/")}img/twh.svg`}
                         sizes="32x32"
                     />
                     <link
                         rel="mask-icon"
-                        href={`${withPrefix("/")}img/safari-pinned-tab.svg`}
+                        href={`${withPrefix("/")}img/twh.svg`}
                         color="#ff4400"
                     />
                     <meta name="theme-color" content="#fff" />
@@ -44,7 +44,7 @@ const TemplateWrapper: React.FC = ({ children }) => {
                     <meta property="og:url" content="/" />
                     <meta
                         property="og:image"
-                        content={`${withPrefix("/")}img/og-image.jpg`}
+                        content={`${withPrefix("/")}img/twh.png`}
                     />
                 </Helmet>
                 <Navbar />
