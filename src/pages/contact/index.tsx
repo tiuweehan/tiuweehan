@@ -1,3 +1,4 @@
+import { IPageProps } from "../../../types/location-types"
 import { navigate } from "gatsby-link"
 import Layout from "../../components/Layout"
 import React, { useState } from "react"
@@ -11,7 +12,7 @@ const encode = (data: any) => {
         .join("&")
 }
 
-const Index: React.FC = () => {
+const Index: React.FC<IPageProps> = ({ location }) => {
     const [state, setState] = useState<any>({})
 
     const handleChange = (
@@ -36,7 +37,7 @@ const Index: React.FC = () => {
     }
 
     return (
-        <Layout>
+        <Layout location={location}>
             <section className="section">
                 <div className="container">
                     <div className="content">

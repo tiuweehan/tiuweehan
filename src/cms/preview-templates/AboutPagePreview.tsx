@@ -1,11 +1,11 @@
 import { AboutPageTemplate } from "../../templates/about-page"
-import { AppEnv } from "../../components/AppConfig"
+import { AppEnv } from "../../components/providers/AppConfigProvider"
 import PropTypes from "prop-types"
-import Provider from "../../components/Provider"
+import Provider from "../../components/providers/Provider"
 import React from "react"
 
-const AboutPagePreview: React.FC<any> = ({ entry, widgetFor }) => (
-    <Provider config={{ env: AppEnv.NETLIFY_CMS }}>
+const AboutPagePreview: React.FC<any> = ({ entry, widgetFor, location }) => (
+    <Provider location={location} config={{ env: AppEnv.NETLIFY_CMS }}>
         <AboutPageTemplate
             title={entry.getIn(["data", "title"])}
             content={widgetFor("body")}

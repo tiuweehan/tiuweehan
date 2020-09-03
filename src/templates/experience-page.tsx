@@ -1,3 +1,4 @@
+import { IPageProps } from "../../types/location-types"
 import { graphql } from "gatsby"
 import ExperienceSection, {
     ExperienceSectionInfo,
@@ -53,11 +54,14 @@ interface ProductPageProps {
     }
 }
 
-const ExperiencePage: React.FC<ProductPageProps> = ({ data }) => {
+const ExperiencePage: React.FC<IPageProps & ProductPageProps> = ({
+    location,
+    data,
+}) => {
     const { frontmatter } = data.markdownRemark
 
     return (
-        <Layout>
+        <Layout location={location}>
             <ExperiencePageTemplate
                 image={frontmatter.image}
                 title={frontmatter.title}

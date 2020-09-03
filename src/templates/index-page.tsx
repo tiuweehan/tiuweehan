@@ -5,6 +5,7 @@ import React from "react"
 import BlogRoll from "../components/BlogRoll"
 import Layout from "../components/Layout"
 
+import { IPageProps } from "../../types/location-types"
 import { renderImage } from "../utils/ImageUtils"
 import Content, { HTMLContent } from "../components/Content"
 
@@ -178,10 +179,13 @@ interface IndexPageProps {
     }
 }
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+const IndexPage: React.FC<IPageProps & IndexPageProps> = ({
+    location,
+    data,
+}) => {
     const { markdownRemark: post } = data
     return (
-        <Layout>
+        <Layout location={location}>
             <IndexPageTemplate
                 title={post.frontmatter.title}
                 heading={post.frontmatter.heading}

@@ -1,5 +1,5 @@
 import "./ExperienceCard.css"
-import { AppEnv, useAppConfig } from "./AppConfig"
+import { AppEnv, useAppConfig } from "./providers/AppConfigProvider"
 import { renderImage } from "../utils/ImageUtils"
 import React, { useLayoutEffect, useRef, useState } from "react"
 import SwiperCard from "./SwiperCard"

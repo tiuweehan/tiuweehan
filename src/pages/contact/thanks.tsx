@@ -1,8 +1,9 @@
-import Layout from '../../components/Layout'
-import React from 'react'
+import { IPageProps } from "../../../types/location-types"
+import Layout from "../../components/Layout"
+import React from "react"
 
-export default () => (
-    <Layout>
+const Thanks: React.FC<IPageProps> = ({ location }) => (
+    <Layout location={location}>
         <section className="section">
             <div className="container">
                 <div className="content">
@@ -13,3 +14,5 @@ export default () => (
         </section>
     </Layout>
 )
+
+export default Thanks

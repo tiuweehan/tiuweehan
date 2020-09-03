@@ -1,3 +1,4 @@
+import { IPageProps } from "../../../types/location-types"
 import { navigate } from "gatsby-link"
 import Layout from "../../components/Layout"
 import React, { useState } from "react"
@@ -12,7 +13,7 @@ const encode = (data: any) => {
     return formData
 }
 
-const Contact: React.FC = () => {
+const Contact: React.FC<IPageProps> = ({ location }) => {
     const [state, setState] = useState<any>({})
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +39,7 @@ const Contact: React.FC = () => {
     }
 
     return (
-        <Layout>
+        <Layout location={location}>
             <section className="section">
                 <div className="container">
                     <div className="content">

@@ -1,9 +1,10 @@
 import "./all.sass"
 import { Helmet } from "react-helmet"
+import { IPageProps } from "../../types/location-types"
 import { withPrefix } from "gatsby"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import Provider from "./Provider"
+import Provider from "./providers/Provider"
 import React from "react"
 import useSiteMetadata from "./SiteMetadata"
 
@@ -11,10 +12,10 @@ import useSiteMetadata from "./SiteMetadata"
 // import { fab } from "@fortawesome/free-brands-svg-icons"
 // library.add(fab)
 
-const TemplateWrapper: React.FC = ({ children }) => {
+const TemplateWrapper: React.FC<IPageProps> = ({ location, children }) => {
     const { title, description } = useSiteMetadata()
     return (
-        <Provider>
+        <Provider location={location}>
             <div>
                 <Helmet>
                     <html lang="en" />

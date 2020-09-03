@@ -1,5 +1,6 @@
 ---
 templateKey: blog-post
+uuid: 00000000-0000-0000-0000-000000000000
 title: Hello World!
 date: 2020-09-03T01:28:15.153Z
 description: ""
@@ -23,7 +24,7 @@ int main() {
 
 There are a number of people I know who regret not penning down their experiences in a blog when they were younger. Hence, I am starting a new tech blog so I will not have the same regrets when I am older. 
 
-One thing I notice about most blogs is that there'll be a number of blog posts in the first few months, a really long break (i.e. a few years) before the next post, and the blog dies after that. I'm guessing it goes something like this:
+One thing I noticed about most blogs is that there'll be a number of blog posts in the first few months, a really long break (i.e. a few years) before the next post, and the blog dies after that. I imagine that it goes something like this:
 
 ![Blog posts over time](/img/blog-posts-over-time.png "Blog posts over time")
 

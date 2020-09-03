@@ -1,3 +1,4 @@
+import { IPageProps } from "../../types/location-types"
 import { graphql } from "gatsby"
 import Content, { HTMLContent } from "../components/Content"
 import Layout from "../components/Layout"
@@ -43,11 +44,14 @@ interface AboutPageProps {
     }
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
+const AboutPage: React.FC<IPageProps & AboutPageProps> = ({
+    location,
+    data,
+}) => {
     const { markdownRemark: post } = data
 
     return (
-        <Layout>
+        <Layout location={location}>
             <AboutPageTemplate
                 contentComponent={HTMLContent}
                 title={post.frontmatter?.title}

@@ -1,11 +1,15 @@
+import { DiscussionEmbed } from "disqus-react"
+import { IPageProps } from "../../types/location-types"
 import { Link, graphql } from "gatsby"
 import { kebabCase } from "lodash"
+import { useLocation } from "../components/providers/LocationProvider"
 import Content, { HTMLContent } from "../components/Content"
 import Helmet from "react-helmet"
 import Layout from "../components/Layout"
 import React from "react"
 
 interface BlogPostTemplateProps {
+    uuid?: string
     content?: string | null
     contentComponent?: React.FC<any>
     description?: string | null
@@ -15,6 +19,7 @@ interface BlogPostTemplateProps {
 }
 
 export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
+    uuid,
     content,
     contentComponent,
     description,
@@ -23,6 +28,16 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     helmet,
 }) => {
     const PostContent = contentComponent || Content
+    const location = useLocation()
+
+    const disqusConfig = {
+        shortname: process.env.GATSBY_DISQUS_SHORTNAME || "",
+        config: {
+            url: location?.href,
+            title: title || "",
+            identifier: uuid || "",
+        },
+    }
 
     return (
         <section className="section">
@@ -56,6 +71,7 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
                                 </ul>
                             </div>
                         ) : null}
+                        <DiscussionEmbed {...disqusConfig} />
                     </div>
                 </div>
             </div>
@@ -63,28 +79,31 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     )
 }
 
-const BlogPost: React.FC<{
-    data: any
-}> = ({ data }) => {
+const BlogPost: React.FC<
+    IPageProps & {
+        data: any
+    }
+> = ({ location, data }) => {
     const { markdownRemark: post } = data
 
     return (
-        <Layout>
+        <Layout location={location}>
             <BlogPostTemplate
-                content={post?.html}
+                uuid={post.frontmatter.uuid}
+                content={post.html}
                 contentComponent={HTMLContent}
-                description={post?.frontmatter?.description}
+                description={post?.frontmatter.description}
                 helmet={
                     <Helmet titleTemplate="%s | Blog">
-                        <title>{`${post?.frontmatter?.title}`}</title>
+                        <title>{`${post?.frontmatter.title}`}</title>
                         <meta
                             name="description"
-                            content={`${post?.frontmatter?.description}`}
+                            content={`${post?.frontmatter.description}`}
                         />
                     </Helmet>
                 }
-                tags={post?.frontmatter?.tags}
-                title={post?.frontmatter?.title}
+                tags={post?.frontmatter.tags}
+                title={post?.frontmatter.title}
             />
         </Layout>
     )
@@ -98,6 +117,7 @@ export const pageQuery = graphql`
             id
             html
             frontmatter {
+                uuid
                 date(formatString: "MMMM DD, YYYY")
                 title
                 description

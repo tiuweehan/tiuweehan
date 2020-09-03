@@ -1,9 +1,10 @@
+import { IPageProps } from "../../../types/location-types"
 import BlogRoll from "../../components/BlogRoll"
 import Layout from "../../components/Layout"
 import React from "react"
 
-const BlogPage = () => (
-    <Layout>
+const BlogPage: React.FC<IPageProps> = ({ location }) => (
+    <Layout location={location}>
         <div
             className="full-width-image-container margin-top-0"
             style={{

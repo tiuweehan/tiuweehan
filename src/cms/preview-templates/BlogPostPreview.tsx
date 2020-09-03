@@ -1,11 +1,11 @@
-import { AppEnv } from "../../components/AppConfig"
+import { AppEnv } from "../../components/providers/AppConfigProvider"
 import { BlogPostTemplate } from "../../templates/blog-post"
 import PropTypes from "prop-types"
-import Provider from "../../components/Provider"
+import Provider from "../../components/providers/Provider"
 import React from "react"
 
-const BlogPostPreview: React.FC<any> = ({ entry, widgetFor }) => (
-    <Provider config={{ env: AppEnv.NETLIFY_CMS }}>
+const BlogPostPreview: React.FC<any> = ({ entry, widgetFor, location }) => (
+    <Provider location={location} config={{ env: AppEnv.NETLIFY_CMS }}>
         <BlogPostTemplate
             content={widgetFor("body")}
             description={entry.getIn(["data", "description"])}

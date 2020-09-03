@@ -1,5 +1,5 @@
 import "./ExperienceSection.css"
-import { AppEnv, useAppConfig } from "./AppConfig"
+import { AppEnv, useAppConfig } from "./providers/AppConfigProvider"
 import { ExperienceCardInfo } from "./ExperienceCard"
 import ExperienceCards from "./ExperienceCards"
 import React, { useLayoutEffect, useRef, useState } from "react"

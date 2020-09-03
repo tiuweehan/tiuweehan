@@ -1,3 +1,4 @@
+import { IPageProps } from "../../../types/location-types"
 import { Link, graphql } from "gatsby"
 import { kebabCase } from "lodash"
 import Helmet from "react-helmet"
@@ -13,7 +14,8 @@ interface PropType {
     }
 }
 
-const TagsPage: React.FC<PropType> = ({
+const TagsPage: React.FC<IPageProps & PropType> = ({
+    location,
     data: {
         allMarkdownRemark: { group },
         site: {
@@ -21,7 +23,7 @@ const TagsPage: React.FC<PropType> = ({
         },
     },
 }) => (
-    <Layout>
+    <Layout location={location}>
         <section className="section">
             <Helmet title={`Tags | ${title}`} />
             <div className="container content">

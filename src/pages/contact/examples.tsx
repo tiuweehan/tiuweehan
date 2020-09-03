@@ -1,9 +1,10 @@
+import { IPageProps } from "../../../types/location-types"
 import Layout from "../../components/Layout"
 import Link from "gatsby-link"
 import React from "react"
 
-const Index = () => (
-    <Layout>
+const Index: React.FC<IPageProps> = ({ location }) => (
+    <Layout location={location}>
         <section className="section">
             <div className="container">
                 <div className="content">

@@ -1,3 +1,4 @@
+import { IPageProps } from "../../types/location-types"
 import { Link, graphql } from "gatsby"
 import Helmet from "react-helmet"
 import Layout from "../components/Layout"
@@ -29,7 +30,7 @@ interface TagRouteProps {
     }
 }
 
-const TagRoute: React.FC<TagRouteProps> = (props) => {
+const TagRoute: React.FC<IPageProps & TagRouteProps> = (props) => {
     const posts = props.data.allMarkdownRemark.edges
     const postLinks = posts.map((post) => (
         <li key={post.node.fields.slug}>
@@ -46,7 +47,7 @@ const TagRoute: React.FC<TagRouteProps> = (props) => {
     } tagged with “${tag}”`
 
     return (
-        <Layout>
+        <Layout location={props.location}>
             <section className="section">
                 <Helmet title={`${tag} | ${title}`} />
                 <div className="container content">
