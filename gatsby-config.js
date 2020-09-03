@@ -131,6 +131,12 @@ module.exports = {
             },
         },
         {
+            resolve: "gatsby-plugin-google-analytics",
+            options: {
+                trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || "none",
+            },
+        },
+        {
             resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
             options: {
                 develop: true, // Activates purging in npm run develop
