@@ -23,7 +23,7 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
         <div className="full-width-image-container margin-top-0">
             <div className="shooting-star-container">
                 <div className="night">
-                    {_.times(15, _.constant(null)).map((__, j) => (
+                    {_.times(10, _.constant(null)).map((__, j) => (
                         <div
                             key={`shooting-star-1-${j}`}
                             className="shooting_star_1"
@@ -31,10 +31,18 @@ export const ExperiencePageTemplate: React.FC<ExperiencePageTemplateProps> = ({
                     ))}
                 </div>
                 <div className="night">
-                    {_.times(15, _.constant(null)).map((__, j) => (
+                    {_.times(10, _.constant(null)).map((__, j) => (
                         <div
                             key={`shooting-star-2-${j}`}
                             className="shooting_star_2"
+                        />
+                    ))}
+                </div>
+                <div className="night">
+                    {_.times(10, _.constant(null)).map((__, j) => (
+                        <div
+                            key={`shooting-star-3-${j}`}
+                            className="shooting_star_3"
                         />
                     ))}
                 </div>
