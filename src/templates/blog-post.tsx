@@ -79,31 +79,30 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     )
 }
 
-const BlogPost: React.FC<
-    IPageProps & {
-        data: any
-    }
-> = ({ location, data }) => {
-    const { markdownRemark: post } = data
-
+const BlogPost: React.FC<IPageProps & IMarkdownPageQuery> = ({
+    location,
+    data: {
+        markdownRemark: { frontmatter, html },
+    },
+}) => {
     return (
         <Layout location={location}>
             <BlogPostTemplate
-                uuid={post.frontmatter.uuid}
-                content={post.html}
+                uuid={frontmatter.uuid}
+                content={html}
                 contentComponent={HTMLContent}
-                description={post?.frontmatter.description}
+                description={frontmatter.description}
                 helmet={
                     <Helmet titleTemplate="%s | Blog">
-                        <title>{`${post?.frontmatter.title}`}</title>
+                        <title>{`${frontmatter.title}`}</title>
                         <meta
                             name="description"
-                            content={`${post?.frontmatter.description}`}
+                            content={`${frontmatter.description}`}
                         />
                     </Helmet>
                 }
-                tags={post?.frontmatter.tags}
-                title={post?.frontmatter.title}
+                tags={frontmatter.tags}
+                title={frontmatter.title}
             />
         </Layout>
     )

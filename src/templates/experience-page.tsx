@@ -54,12 +54,12 @@ interface ProductPageProps {
     }
 }
 
-const ExperiencePage: React.FC<IPageProps & ProductPageProps> = ({
+const ExperiencePage: React.FC<IPageProps & IMarkdownPageQuery> = ({
     location,
-    data,
+    data: {
+        markdownRemark: { frontmatter },
+    },
 }) => {
-    const { frontmatter } = data.markdownRemark
-
     return (
         <Layout location={location}>
             <ExperiencePageTemplate

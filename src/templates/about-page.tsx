@@ -38,24 +38,18 @@ export const AboutPageTemplate: React.FC<AboutPageTemplateProps> = ({
     )
 }
 
-interface AboutPageProps {
-    data: {
-        markdownRemark: any
-    }
-}
-
-const AboutPage: React.FC<IPageProps & AboutPageProps> = ({
+const AboutPage: React.FC<IPageProps & IMarkdownPageQuery> = ({
     location,
-    data,
+    data: {
+        markdownRemark: { frontmatter, html },
+    },
 }) => {
-    const { markdownRemark: post } = data
-
     return (
         <Layout location={location}>
             <AboutPageTemplate
                 contentComponent={HTMLContent}
-                title={post.frontmatter?.title}
-                content={post.html}
+                title={frontmatter?.title}
+                content={html}
             />
         </Layout>
     )

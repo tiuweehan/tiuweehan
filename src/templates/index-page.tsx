@@ -173,26 +173,21 @@ export const IndexPageTemplate = ({
     )
 }
 
-interface IndexPageProps {
-    data: {
-        markdownRemark: any
-    }
-}
-
-const IndexPage: React.FC<IPageProps & IndexPageProps> = ({
+const IndexPage: React.FC<IPageProps & IMarkdownPageQuery> = ({
     location,
-    data,
+    data: {
+        markdownRemark: { frontmatter, html },
+    },
 }) => {
-    const { markdownRemark: post } = data
     return (
         <Layout location={location}>
             <IndexPageTemplate
-                title={post.frontmatter.title}
-                heading={post.frontmatter.heading}
-                resume={post.frontmatter.resume}
-                connections={post.frontmatter.connections}
+                title={frontmatter.title}
+                heading={frontmatter.heading}
+                resume={frontmatter.resume}
+                connections={frontmatter.connections}
                 contentComponent={HTMLContent}
-                content={post.html}
+                content={html}
             />
         </Layout>
     )
