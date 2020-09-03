@@ -7,7 +7,7 @@ connections:
     link: https://github.com/tiuweehan
   - name: Email
     logo: /img/logo-email.svg
-    link: contact@tiuweehan.com
+    link: mailto:contact@tiuweehan.com
   - name: LinkedIn
     logo: /img/logo-linkedin.svg
     link: https://www.linkedin.com/in/wee-han/
