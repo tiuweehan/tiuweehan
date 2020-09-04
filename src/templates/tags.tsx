@@ -33,9 +33,28 @@ interface TagRouteProps {
 const TagRoute: React.FC<IPageProps & TagRouteProps> = (props) => {
     const posts = props.data.allMarkdownRemark.edges
     const postLinks = posts.map((post) => (
-        <li key={post.node.fields.slug}>
+        <li
+            key={post.node.fields.slug}
+            style={{
+                width: "50%",
+                padding: "20px 10px",
+                borderRadius: "10px",
+                background: "rgba(242, 242, 242, 1)",
+                color: "rgba(117, 117, 117, 1)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
             <Link to={post.node.fields.slug}>
-                <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
+                <h2
+                    className="is-size-2"
+                    style={{
+                        margin: 0,
+                    }}
+                >
+                    {post.node.frontmatter.title}
+                </h2>
             </Link>
         </li>
     ))
@@ -48,7 +67,7 @@ const TagRoute: React.FC<IPageProps & TagRouteProps> = (props) => {
 
     return (
         <Layout location={props.location}>
-            <section className="section">
+            <section className="section" style={{ minHeight: "63vh" }}>
                 <Helmet title={`${tag} | ${title}`} />
                 <div className="container content">
                     <div className="columns">
@@ -56,9 +75,19 @@ const TagRoute: React.FC<IPageProps & TagRouteProps> = (props) => {
                             className="column is-10 is-offset-1"
                             style={{ marginBottom: "6rem" }}
                         >
-                            <h3 className="title is-size-4 is-bold-light">
+                            <h2
+                                style={{
+                                    margin: "10px 0px 0px 0px",
+                                    fontFamily:
+                                        'medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif',
+                                    fontWeight: 300,
+                                    fontSize: "24px",
+                                    letterSpacing: 0,
+                                    color: "rgba(117, 117, 117, 1)",
+                                }}
+                            >
                                 {tagHeader}
-                            </h3>
+                            </h2>
                             <ul className="taglist">{postLinks}</ul>
                             <p>
                                 <Link to="/tags/">Browse all tags</Link>

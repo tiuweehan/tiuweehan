@@ -24,7 +24,7 @@ const TagsPage: React.FC<IPageProps & PropType> = ({
     },
 }) => (
     <Layout location={location}>
-        <section className="section">
+        <section className="section" style={{ minHeight: "63vh" }}>
             <Helmet title={`Tags | ${title}`} />
             <div className="container content">
                 <div className="columns">
@@ -41,7 +41,38 @@ const TagsPage: React.FC<IPageProps & PropType> = ({
                                             tag.fieldValue
                                         )}/`}
                                     >
-                                        {tag.fieldValue} ({tag.totalCount})
+                                        <div
+                                            style={{
+                                                margin: "5px",
+                                                padding: "5px 10px",
+                                                borderRadius: "3px",
+                                                fontSize: "15px",
+                                                background:
+                                                    "rgba(242, 242, 242, 1)",
+                                                color: "rgba(117, 117, 117, 1)",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            <div>{tag.fieldValue}</div>
+                                            <div
+                                                style={{
+                                                    backgroundColor: "#f05f70",
+                                                    height: "15px",
+                                                    width: "15px",
+                                                    borderRadius: "7px",
+                                                    color: "white",
+                                                    textAlign: "center",
+                                                    lineHeight: 1.5,
+                                                    fontSize: "10px",
+                                                    fontWeight: 600,
+                                                    marginLeft: "5px",
+                                                }}
+                                            >
+                                                {tag.totalCount}
+                                            </div>
+                                        </div>
                                     </Link>
                                 </li>
                             ))}
