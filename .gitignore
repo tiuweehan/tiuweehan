@@ -7,6 +7,9 @@ public/
 static/admin/*.bundle.*
 .DS_Store
 yarn-error.log
+# Gatsby
+.env.development
+.env.production
 # IDE
 .idea
 # Local Netlify folder

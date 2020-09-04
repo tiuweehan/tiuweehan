@@ -1,3 +1,9 @@
+function loadDotEnv() {
+    require("dotenv").config({
+        path: `.env.${process.env.NODE_ENV}`,
+    })
+}
+
 function checkEnv(envName) {
     if (
         typeof process.env[envName] === "undefined" ||
@@ -15,6 +21,7 @@ function checkProductionEnv(envName) {
 }
 
 try {
+    loadDotEnv()
     checkProductionEnv("GOOGLE_ANALYTICS_TRACKING_ID")
     checkProductionEnv("GATSBY_DISQUS_SHORTNAME")
 } catch (e) {
@@ -109,7 +116,7 @@ module.exports = {
                             // Defaults to false.
                             // If you wish to only show line numbers on certain code blocks,
                             // leave false and use the {numberLines: true} syntax below
-                            showLineNumbers: false,
+                            showLineNumbers: true,
                             // If setting this to true, the parser won't handle and highlight inline
                             // code used in markdown i.e. single backtick code like `this`.
                             noInlineHighlight: false,
