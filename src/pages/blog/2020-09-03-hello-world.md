@@ -1,13 +1,13 @@
 ---
 templateKey: blog-post
 uuid: 00000000-0000-0000-0000-000000000000
-title: Hello World!
+title: Hello World
 date: 2020-09-03T01:28:15.153Z
-description: ""
+description: new beginnings
 featuredpost: false
-featuredimage: /img/twh.png
+featuredimage: /img/blog-posts-over-time.png
 tags:
-  - code
+  - Web Development
 ---
 ```c
 #include <stdio.h>
