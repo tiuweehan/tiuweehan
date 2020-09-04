@@ -164,7 +164,20 @@ const BlogPost: React.FC<IPageProps & IMarkdownPageQuery> = ({
                     </Helmet>
                 }
             />
-            <DiscussionEmbed {...disqusConfig} />
+            <section
+                className="section"
+                style={{
+                    marginTop: "0px",
+                }}
+            >
+                <div className="container content">
+                    <div className="columns">
+                        <div className="column is-10 is-offset-1">
+                            <DiscussionEmbed {...disqusConfig} />
+                        </div>
+                    </div>
+                </div>
+            </section>
         </Layout>
     )
 }
