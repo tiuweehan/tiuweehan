@@ -1,3 +1,26 @@
+function checkEnv(envName) {
+    if (
+        typeof process.env[envName] === "undefined" ||
+        process.env[envName] === ""
+    ) {
+        throw `Missing required environment variables: ${envName}`
+    }
+}
+
+function checkProductionEnv(envName) {
+    if (process.env.NODE_ENV !== "production") {
+        return
+    }
+    checkEnv(envName)
+}
+
+try {
+    checkProductionEnv("GOOGLE_ANALYTICS_TRACKING_ID")
+    checkProductionEnv("GATSBY_DISQUS_SHORTNAME")
+} catch (e) {
+    throw new Error(e)
+}
+
 module.exports = {
     siteMetadata: {
         title: "Tiu Wee Han",

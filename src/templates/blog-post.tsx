@@ -2,7 +2,6 @@ import { DiscussionEmbed } from "disqus-react"
 import { IPageProps } from "../../types/location-types"
 import { Link, graphql } from "gatsby"
 import { kebabCase } from "lodash"
-import { useLocation } from "../components/providers/LocationProvider"
 import Content, { HTMLContent } from "../components/Content"
 import Helmet from "react-helmet"
 import Layout from "../components/Layout"
@@ -30,16 +29,6 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     helmet,
 }) => {
     const PostContent = contentComponent || Content
-    const location = useLocation()
-
-    const disqusConfig = {
-        shortname: process.env.GATSBY_DISQUS_SHORTNAME || "",
-        config: {
-            url: location?.href,
-            title: title || "",
-            identifier: uuid || "",
-        },
-    }
 
     return (
         <section className="section">
@@ -133,7 +122,6 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
                                 </ul>
                             </div>
                         ) : null}
-                        <DiscussionEmbed {...disqusConfig} />
                     </div>
                 </div>
             </div>
@@ -147,6 +135,15 @@ const BlogPost: React.FC<IPageProps & IMarkdownPageQuery> = ({
         markdownRemark: { frontmatter, html },
     },
 }) => {
+    const disqusConfig = {
+        shortname: process.env.GATSBY_DISQUS_SHORTNAME || "",
+        config: {
+            url: location?.href,
+            title: frontmatter.title || "",
+            identifier: frontmatter.uuid || "",
+        },
+    }
+
     return (
         <Layout location={location}>
             <BlogPostTemplate
@@ -167,6 +164,7 @@ const BlogPost: React.FC<IPageProps & IMarkdownPageQuery> = ({
                     </Helmet>
                 }
             />
+            <DiscussionEmbed {...disqusConfig} />
         </Layout>
     )
 }
