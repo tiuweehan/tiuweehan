@@ -1,8 +1,9 @@
+import { BlogPostContent } from "../components/BlogPostContent"
 import { DiscussionEmbed } from "disqus-react"
 import { IPageProps } from "../../types/location-types"
 import { Link, graphql } from "gatsby"
 import { kebabCase } from "lodash"
-import Content, { HTMLContent } from "../components/Content"
+import Content from "../components/Content"
 import Helmet from "react-helmet"
 import Layout from "../components/Layout"
 import React from "react"
@@ -153,7 +154,7 @@ const BlogPost: React.FC<IPageProps & IMarkdownPageQuery> = ({
                 date={frontmatter.date}
                 tags={frontmatter.tags}
                 content={html}
-                contentComponent={HTMLContent}
+                contentComponent={BlogPostContent}
                 helmet={
                     <Helmet titleTemplate="%s | Blog">
                         <title>{`${frontmatter.title}`}</title>

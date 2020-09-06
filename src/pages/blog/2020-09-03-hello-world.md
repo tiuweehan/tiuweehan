@@ -18,7 +18,7 @@ int main() {
 }
 ```
 
-<div style="text-align:center"><i>Obligatory Hello World code block</i></div>
+<figcaption>Obligatory Hello World code block</figcaption>
 
 <br/>
 
