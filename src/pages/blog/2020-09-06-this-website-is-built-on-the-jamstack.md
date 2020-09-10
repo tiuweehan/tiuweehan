@@ -4,7 +4,7 @@ uuid: ffd0ccb4-3a4e-4862-bce5-7ec455ec6ad5
 title: This website is built on the JAMStack
 date: 2020-09-06T14:25:59.038Z
 description: "Gatsby + Netlify CMS: A deadly combo"
-featuredpost: true
+featuredpost: false
 featuredimage: /img/website-architecture.png
 tags:
   - JAMStack
@@ -310,7 +310,7 @@ The problem is Disqus requires the url of the page to be passed into its config,
 
 <br />
 
-Seems like my website did pretty well, but there are some issues I'll have to fix.
+Seems like my website did pretty well, but there are some issues I'll have to fix. Note that I haven't actually tried to optimise my website (besides using Gatsby), so I guess that's evidence for how awesome this stack is.
 
 <br />
 
