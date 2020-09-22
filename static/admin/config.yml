@@ -134,3 +134,15 @@ collections:
               }
             ]
           }
+
+  - name: "genealogy"
+    label: "Genealogy"
+    folder: "src/pages/genealogy"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "biography-page"}
+      - {label: "ID", name: "id", widget: "string"}
+      - {label: "Parent ID", name: "parentId", widget: "string"}
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Simplified Chinese Name", name: "simplifiedChineseName", widget: "string"}
