@@ -9,6 +9,7 @@ interface FrontmatterType {
     parentId?: string
     name: string
     simplifiedChineseName: string
+    siblingPosition: number
     spouse?: {
         name: string
         simplifiedChineseName: string
@@ -53,6 +54,7 @@ const query = graphql`
                         parentId
                         name
                         simplifiedChineseName
+                        siblingPosition
                         spouse {
                             name
                             simplifiedChineseName
@@ -73,11 +75,6 @@ function elbow(s: { x: number; y: number }, d: { x: number; y: number }) {
     const hy = (s.y - d.y) / 2
     return `M${d.x},${d.y} V${d.y + hy} H${s.x} V${s.y}`
 }
-
-// function elbow(s: { x: number; y: number }, d: { x: number; y: number }) {
-//     const hy = (s.y - d.y) / 2
-//     return `M${d.y},${d.x} H${d.y + hy} V${s.x} H${s.y}`
-// }
 
 const FamilyTree: React.FC = () => {
     const { width } = useWindowSize()
@@ -105,11 +102,11 @@ const FamilyTree: React.FC = () => {
         .id((d: any) => d.id)
         .parentId((d: any) => d.parentId)
 
-    const root = stratify(profiles)
-
-    root.sort((a: any, b: any) => {
-        return 1
+    const root = stratify(profiles).sort((a: any, b: any) => {
+        return a.data.siblingPosition - b.data.siblingPosition
     })
+
+    console.log(root)
 
     const height = (root.height + 2) * depthSize
 
