@@ -71,8 +71,13 @@ const linkColors = d3
 
 function elbow(s: { x: number; y: number }, d: { x: number; y: number }) {
     const hy = (s.y - d.y) / 2
-    return `M${d.y},${d.x} H${d.y + hy} V${s.x} H${s.y}`
+    return `M${d.x},${d.y} V${d.y + hy} H${s.x} V${s.y}`
 }
+
+// function elbow(s: { x: number; y: number }, d: { x: number; y: number }) {
+//     const hy = (s.y - d.y) / 2
+//     return `M${d.y},${d.x} H${d.y + hy} V${s.x} H${s.y}`
+// }
 
 const FamilyTree: React.FC = () => {
     const { width } = useWindowSize()
@@ -90,9 +95,10 @@ const FamilyTree: React.FC = () => {
     )
 
     const duration = 750
-    const boxW = 150
-    const boxH = 30
-    const spouseSpace = 50
+    const boxW = 80
+    const boxH = 80
+    const spouseSpace = 120
+    const depthSize = 150
 
     const stratify = d3
         .stratify()
@@ -100,11 +106,15 @@ const FamilyTree: React.FC = () => {
         .parentId((d: any) => d.parentId)
 
     const root = stratify(profiles)
-    console.log(root)
-    const height = (root.height + 1) * 100
 
-    root["x0"] = height / 2
-    root["y0"] = 0
+    root.sort((a: any, b: any) => {
+        return 1
+    })
+
+    const height = (root.height + 2) * depthSize
+
+    root["x0"] = 0
+    root["y0"] = width / 2
 
     const treemap = d3
         .tree()
@@ -141,7 +151,7 @@ const FamilyTree: React.FC = () => {
         const links = treeData.descendants().slice(1)
 
         nodes.forEach((d) => {
-            d.y = d.depth * 250
+            d.y = d.depth * depthSize
         })
 
         const node = svg.selectAll("g.node").data(nodes, (d: any) => d.id)
@@ -154,7 +164,7 @@ const FamilyTree: React.FC = () => {
             )
             .attr(
                 "transform",
-                () => `translate(${source["y0"]},${source["x0"]})`
+                () => `translate(${source["x0"]}, ${source["y0"]})`
             )
             .on("click", click)
 
@@ -163,7 +173,7 @@ const FamilyTree: React.FC = () => {
             .append("g")
             .attr("transform", (d: any) => {
                 return d.data.spouse
-                    ? `translate(0, ${-spouseSpace / 2})`
+                    ? `translate(${-spouseSpace / 2}, 0)`
                     : "translate(0, 0)"
             })
 
@@ -200,7 +210,7 @@ const FamilyTree: React.FC = () => {
             .classed("node-name", true)
             .attr("dy", ".35em") // shift it to vertically middle
             .attr("text-anchor", "middle")
-            .text((d: any) => d.data.name)
+            .text((d: any) => d.data.simplifiedChineseName)
 
         const nodeHasSpouse = nodeEnter.filter((d: any) => !!d.data.spouse)
 
@@ -211,15 +221,15 @@ const FamilyTree: React.FC = () => {
             .attr("stroke", (d: any) => {
                 return linkColors(d.depth)
             })
-            .attr("x1", 0)
-            .attr("y1", -spouseSpace / 2)
-            .attr("x2", 0)
-            .attr("y2", spouseSpace / 2)
+            .attr("y1", 0)
+            .attr("x1", -spouseSpace / 2)
+            .attr("y2", 0)
+            .attr("x2", spouseSpace / 2)
 
         // Add spouse block
         const spouseBlock = nodeHasSpouse
             .append("g")
-            .attr("transform", `translate(0, ${spouseSpace / 2})`)
+            .attr("transform", `translate(${spouseSpace / 2}, 0)`)
 
         // spouse block
         spouseBlock
@@ -266,7 +276,7 @@ const FamilyTree: React.FC = () => {
                     return "font-size: 10px"
                 }
             })
-            .text((d: any) => `⚭${d.data.spouse.name}`)
+            .text((d: any) => `${d.data.spouse.simplifiedChineseName}`)
 
         // Add expand indicator
         nodeEnter
@@ -287,7 +297,7 @@ const FamilyTree: React.FC = () => {
         nodeUpdate
             .transition()
             .duration(duration)
-            .attr("transform", (d: any) => `translate(${d.y},${d.x})`)
+            .attr("transform", (d: any) => `translate(${d.x}, ${d.y})`)
 
         // Update the expand / close indicator
         nodeUpdate
@@ -299,7 +309,7 @@ const FamilyTree: React.FC = () => {
             .exit()
             .transition()
             .duration(duration)
-            .attr("transform", () => `translate(${source.y},${source.x})`)
+            .attr("transform", () => `translate(${source.x}, ${source.y})`)
             .remove()
 
         // On exit reduce the opacity of text labels
@@ -337,7 +347,7 @@ const FamilyTree: React.FC = () => {
                     // move link start (at child) a bit up since it is at new position
                     // because of spouse
                     return connector(
-                        { y: d.y, x: d.x - spouseSpace / 2 },
+                        { y: d.y - spouseSpace / 2, x: d.x },
                         d.parent
                     )
                 }
@@ -383,7 +393,7 @@ const FamilyTree: React.FC = () => {
                 <g
                     ref={ref}
                     className="tree-container"
-                    transform={`translate(90, ${height / 2}) scale(1)`}
+                    transform={`translate(${width / 2}, 90) scale(1)`}
                 />
             </svg>
         </main>
