@@ -69,7 +69,7 @@ const linkColors = d3
     .scaleLinear()
     .domain([1, 4, 8])
     // @ts-ignore
-    .range(["#00441b", "#29851F", "#7EA31E"])
+    .range(["#AAA", "#AAA"])
 
 function elbow(s: { x: number; y: number }, d: { x: number; y: number }) {
     const hy = (s.y - d.y) / 2
@@ -92,9 +92,9 @@ const FamilyTree: React.FC = () => {
     )
 
     const duration = 750
-    const boxW = 80
+    const boxW = 50
     const boxH = 80
-    const spouseSpace = 120
+    const spouseSpace = 100
     const depthSize = 150
 
     const stratify = d3
@@ -390,7 +390,7 @@ const FamilyTree: React.FC = () => {
                 <g
                     ref={ref}
                     className="tree-container"
-                    transform={`translate(${width / 2}, 90) scale(1)`}
+                    transform={`translate(${(5 * width) / 6}, 90) scale(1)`}
                 />
             </svg>
         </main>

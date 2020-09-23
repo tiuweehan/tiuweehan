@@ -1,6 +1,6 @@
 ---
 templateKey: biography-page
-id: xuan-yuan
+id: xuan-yuan-轩辕
 name: Xuan Yuan
 siblingPosition: 1
 simplifiedChineseName: 轩辕
