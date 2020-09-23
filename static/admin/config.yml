@@ -143,6 +143,12 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "biography-page"}
       - {label: "ID", name: "id", widget: "string"}
-      - {label: "Parent ID", name: "parentId", widget: "string"}
+      - {label: "Parent ID", name: "parentId", widget: "string", required: false}
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Simplified Chinese Name", name: "simplifiedChineseName", widget: "string"}
+      - {label: "Gender", name: "gender", widget: "string"}
+      - {label: "Spouse", name: "spouse", widget: "object", required: false, fields: [
+          {label: "Name", name: "name", widget: "string"},
+          {label: "Simplified Chinese Name", name: "simplifiedChineseName", widget: "string"},
+          {label: "Gender", name: "gender", widget: "string"}
+      ]}
